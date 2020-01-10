@@ -26,7 +26,7 @@ public class DAOLieu {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static Lieu rechercheCalpById(int IDLieu) {
+	public static Lieu rechercheLieuById(int IDLieu) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		Lieu Lieu = em.find(Lieu.class, IDLieu);

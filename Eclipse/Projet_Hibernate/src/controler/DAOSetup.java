@@ -1,6 +1,10 @@
 package controler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.Setup;
 
@@ -18,7 +22,8 @@ public class DAOSetup {
 	public static void supprimerSetup(Setup Setup) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
-		em.remove(Setup);
+		Setup Setup2 = em.find(Setup.class, Setup.getCodeSetup());
+		em.remove(Setup2);
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
@@ -32,14 +37,29 @@ public class DAOSetup {
 		return Setup;
 	}
 
-	public static Setup modifierSetup(Setup Setup) {
+	public static void modifierSetup(int IDSetup, Setup Setup) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
-		Setup AncienSetup = em.find(Setup.class, Setup.getCodeSetup());
-		AncienSetup.setListClap(Setup.getListClap());
-		AncienSetup.setParametre(Setup.getParametre());
+		Setup NouveauSetup = em.find(Setup.class, IDSetup);
+		NouveauSetup.setListClap(Setup.getListClap());
+		NouveauSetup.setParametre(Setup.getParametre());
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
-		return AncienSetup;
 	}
+
+	public static ArrayList<Setup> retrunAllSetup() {
+		EntityManager em = Connexion.ouvrirconnexion();
+		em.getTransaction().begin();
+		ArrayList<Setup> resultat = new ArrayList<Setup>();
+		String queryString = "select s from Setup s";
+		Query query = em.createQuery(queryString);
+		List results =  query.getResultList();
+		for (int i = 0; i < results.size(); i++) {
+			Setup Setup = (Setup) results.get(i);
+			resultat.add(Setup);
+		}
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+		return resultat;
+	};
 }

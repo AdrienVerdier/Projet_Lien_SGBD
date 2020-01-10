@@ -27,7 +27,7 @@ public class DAOClap {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static Clap rechercheCalpById(int IDClap) {
+	public static Clap rechercheClapById(int IDClap) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		Clap Clap = em.find(Clap.class, IDClap);

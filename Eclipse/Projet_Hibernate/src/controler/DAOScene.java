@@ -26,7 +26,7 @@ public class DAOScene {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static Scene rechercheCalpById(int IDScene) {
+	public static Scene rechercheSceneById(int IDScene) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		Scene Scene = em.find(Scene.class, IDScene);
@@ -45,7 +45,7 @@ public class DAOScene {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static ArrayList<Scene> retrunAllScene() {
+	public static List<Scene> retrunAllScene() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<Scene> resultat = new ArrayList<Scene>();

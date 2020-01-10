@@ -10,7 +10,7 @@ public class Setup {
 	@Id
 	private int codeSetup;
 	private String parametre;
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Scene codeScene;
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "codeSetup")
 	private List<Clap> listClap;
@@ -50,6 +50,8 @@ public class Setup {
 		this.listClap = listClap;
 	}
 	
-	
+	public Setup() {
+		super();
+	}
 	
 }

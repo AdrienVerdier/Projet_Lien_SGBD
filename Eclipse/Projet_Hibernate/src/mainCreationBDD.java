@@ -3,31 +3,52 @@ import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 
-import controler.Connexion;
-import controler.DAOClap;
-import model.Clap;
+import controler.*;
+import model.*;
 
 public class mainCreationBDD {
 	public static void main(String[] args) {
 
 		Connexion.init();
-		Duration duree = Duration.ofMinutes(1);
-		Clap a = new Clap(1,duree,1,null);
-		Clap b = new Clap(2,duree,1,null);
-		Clap c = new Clap(3,duree,4,null);
-		DAOClap.ajouterClap(a);
-		DAOClap.ajouterClap(b);
-		DAOClap.ajouterClap(c);
-		ArrayList<Clap> resultat = new ArrayList<Clap>();
-		resultat = DAOClap.retrunAllClap();
-		System.out.println(resultat.get(0).getCodeClap());
-		System.out.println(resultat.get(0).getCodeBobine());
-		System.out.println(resultat.get(1).getCodeClap());
-		System.out.println(resultat.get(1).getCodeBobine());
-
-		System.out.println(DAOClap.rechercheCalpById(1).getCodeClap());
 		
-		DAOClap.modifierCLap(1,c);
-		System.out.println(DAOClap.rechercheCalpById(1).getCodeBobine());
+		//creation
+		
+		Duration duree = Duration.ofMinutes(1);
+		//ATTENTION ID SCENE SONT LES MEMES POUR LA BDD DONC METTRE DIFFERENT
+		SceneExterieur SceneExterieur1 = new SceneExterieur(1,"Setup 1 et 2",null,0,null);
+		SceneInterieur SceneInterieur1 = new SceneInterieur(2,"Setup 3",null,null);
+
+		Setup Setup1 = new Setup(1,"Clap 1 et 2",SceneExterieur1,null);
+		Setup Setup2 = new Setup(2,"Clap 3 et 4",SceneExterieur1,null);
+		Setup Setup3 = new Setup(3,"Clap 5",SceneInterieur1,null);
+
+		Clap Clap1 = new Clap(1,duree,1,Setup1);
+		Clap Clap2 = new Clap(2,duree,1,Setup1);
+		Clap Clap3 = new Clap(3,duree,4,Setup2);
+		Clap Clap4 = new Clap(4,duree,2,Setup2);
+		Clap Clap5 = new Clap(5,duree,3,Setup3);
+		
+		Lieu Lieu1 = new Lieu(1,"adresse","SceneExterieur1",null);
+		Theatre Theatre1 = new Theatre(1,"SceneInterieur1",null);
+		//voir pour faire ll'inverse ajouter un lieu puis ajouter les scenes mais un peu bizarre ?
+		// est ce qu'on peut avoir un lieu sans Scene ?
+		//ajout à la BDD
+
+		DAOSceneExterieur.ajouterSceneExterieur(SceneExterieur1);
+		DAOSceneInterieur.ajouterSceneInterieur(SceneInterieur1);
+		
+		//test
+		DAOSceneExterieur.modifierSceneExterieurLieu(1, Lieu1);
+		DAOSceneInterieur.modifierSceneInterieurTheatre(2, Theatre1);
+		
+		DAOSceneExterieur.ajouterSceneExterieurSetup(SceneExterieur1, Setup1);
+		System.out.println(SceneExterieur1.getListSetup());
+		DAOSceneExterieur.ajouterSceneExterieurSetup(SceneExterieur1, Setup2);
+		System.out.println(SceneExterieur1.getListSetup());
+		DAOSetup.supprimerSetup(Setup2);
+		System.out.println(SceneExterieur1.getCodeLieu()); // ok ?
+		System.out.println(DAOSetup.retrunAllSetup());
+		DAOSceneInterieur.ajouterSceneInterieurSetup(SceneInterieur1, Setup3);
+		
 	}
 }

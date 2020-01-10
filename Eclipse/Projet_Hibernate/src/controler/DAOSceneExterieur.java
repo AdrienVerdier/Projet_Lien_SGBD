@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import model.Lieu;
 import model.SceneExterieur;
+import model.Setup;
 
 public class DAOSceneExterieur {
 	public static void ajouterSceneExterieur(SceneExterieur SceneExterieur) {
@@ -17,7 +18,24 @@ public class DAOSceneExterieur {
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
+	
 
+	public static void ajouterSceneExterieurSetup(SceneExterieur SceneExterieur,Setup Setup) {
+		EntityManager em = Connexion.ouvrirconnexion();		
+		em.getTransaction().begin();
+		List<Setup> listSetup;
+		listSetup = SceneExterieur.getListSetup();
+		if(listSetup == null)
+		{
+			listSetup = new ArrayList<Setup>();
+		}
+		listSetup.add(Setup);
+		SceneExterieur.setListSetup(listSetup);
+		em.getTransaction().commit();
+		DAOSetup.ajouterSetup(Setup);
+		Connexion.fermerconnexion(em);
+	}
+	
 	public static void supprimerSceneExterieur(SceneExterieur SceneExterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -27,7 +45,7 @@ public class DAOSceneExterieur {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static SceneExterieur rechercheCalpById(int IDSceneExterieur) {
+	public static SceneExterieur rechercheSceneExterieurById(int IDSceneExterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		SceneExterieur SceneExterieur = em.find(SceneExterieur.class, IDSceneExterieur);
@@ -51,17 +69,17 @@ public class DAOSceneExterieur {
 	public static void modifierSceneExterieurLieu(int IDSceneExterieur, Lieu Lieu) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
-		SceneExterieur NouveauSceneExterieur = em.find(SceneExterieur.class, IDSceneExterieur);
+		SceneExterieur NouveauSceneExterieur = em.find(SceneExterieur.class, IDSceneExterieur);;
 		NouveauSceneExterieur.setCodeLieu(Lieu);
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
 
-	public static ArrayList<SceneExterieur> retrunAllSceneExterieur() {
+	public static List<SceneExterieur> retrunAllSceneExterieur() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<SceneExterieur> resultat = new ArrayList<SceneExterieur>();
-		String queryString = "select c from SceneExterieur c";
+		String queryString = "select s from SceneExterieur s";
 		Query query = em.createQuery(queryString);
 		List results = query.getResultList();
 		for (int i = 0; i < results.size(); i++) {

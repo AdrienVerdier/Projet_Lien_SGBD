@@ -49,4 +49,12 @@ public class Lieu {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "codeLieu")
 	private List<SceneExterieur> listSceneExterieur;
 
+	public Lieu(int codeLieu, String adresse, String description, List<SceneExterieur> listSceneExterieur) {
+		super();
+		this.codeLieu = codeLieu;
+		this.adresse = adresse;
+		this.description = description;
+		this.listSceneExterieur = listSceneExterieur;
+	}
+	
 }

@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import model.Theatre;
 import model.SceneInterieur;
+import model.Setup;
 
 public class DAOSceneInterieur {
 	
@@ -19,6 +20,22 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 	}
 
+	public static void ajouterSceneInterieurSetup(SceneInterieur SceneInterieur,Setup Setup) {
+		EntityManager em = Connexion.ouvrirconnexion();		
+		em.getTransaction().begin();
+		List<Setup> listSetup;
+		listSetup = SceneInterieur.getListSetup();
+		if(listSetup == null)
+		{
+			listSetup = new ArrayList<Setup>();
+		}
+		listSetup.add(Setup);
+		SceneInterieur.setListSetup(listSetup);
+		em.getTransaction().commit();
+		DAOSetup.ajouterSetup(Setup);
+		Connexion.fermerconnexion(em);
+	}
+	
 	public static void supprimerSceneInterieur(SceneInterieur SceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -28,7 +45,7 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static SceneInterieur rechercheCalpById(int IDSceneInterieur) {
+	public static SceneInterieur rechercheSceneInterieurById(int IDSceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		SceneInterieur SceneInterieur = em.find(SceneInterieur.class, IDSceneInterieur);
@@ -48,7 +65,7 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 	}
 	
-	public static void modifierSceneInterieurLieu(int IDSceneInterieur, Theatre Theatre) {
+	public static void modifierSceneInterieurTheatre(int IDSceneInterieur, Theatre Theatre) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		SceneInterieur NouveauSceneInterieur = em.find(SceneInterieur.class, IDSceneInterieur);
@@ -57,13 +74,13 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static ArrayList<SceneInterieur> retrunAllSceneInterieur() {
+	public static List<SceneInterieur> retrunAllSceneInterieur() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<SceneInterieur> resultat = new ArrayList<SceneInterieur>();
-		String queryString = "select c from SceneInterieur c";
+		String queryString = "select s from SceneInterieur s";
 		Query query = em.createQuery(queryString);
-		List results = query.getResultList();
+		List results =  query.getResultList();
 		for (int i = 0; i < results.size(); i++) {
 			SceneInterieur SceneInterieur = (SceneInterieur) results.get(i);
 			resultat.add(SceneInterieur);

@@ -11,7 +11,7 @@ public class Clap {
 	private int codeClap;
 	private Duration duree;
 	private int codeBobine;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Setup codeSetup;
 
 	public int getCodeClap() {
