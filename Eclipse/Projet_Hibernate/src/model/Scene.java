@@ -43,6 +43,8 @@ public class Scene {
 		this.listSetup = listSetup;
 	}
 	
-	
+	public Scene() {
+		super();
+	}
 
 }
