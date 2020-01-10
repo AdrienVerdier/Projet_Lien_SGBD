@@ -1,10 +1,14 @@
 package controler;
 
+import java.util.*;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.Clap;
 
 public class DAOClap {
+	//n'oublie pas de faire le lien entre la liste de Clap de la classe Setup voir tp2 Hibernate
 
 	public static void ajouterClap(Clap Clap) {
 		EntityManager em = Connexion.ouvrirconnexion();
@@ -17,7 +21,8 @@ public class DAOClap {
 	public static void supprimerClap(Clap Clap) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
-		em.remove(Clap);
+		Clap Clap2 = em.find(Clap.class, Clap.getCodeClap());
+		em.remove(Clap2);
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
@@ -31,14 +36,29 @@ public class DAOClap {
 		return Clap;
 	}
 
-	public static Clap modifierCLap(Clap Clap) {
+	public static void modifierCLap(int IDClap, Clap Clap) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
-		Clap AncienClap = em.find(Clap.class, Clap.getCodeClap());
-		AncienClap.setCodeBobine(Clap.getCodeBobine());
-		AncienClap.setDuree(Clap.getDuree());
+		Clap NouveauClap = em.find(Clap.class, IDClap);
+		NouveauClap.setCodeBobine(Clap.getCodeBobine());
+		NouveauClap.setDuree(Clap.getDuree());
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
-		return AncienClap;
 	}
+
+	public static ArrayList<Clap> retrunAllClap() {
+		EntityManager em = Connexion.ouvrirconnexion();
+		em.getTransaction().begin();
+		ArrayList<Clap> resultat = new ArrayList<Clap>();
+		String queryString = "select c from Clap c";
+		Query query = em.createQuery(queryString);
+		List results = query.getResultList();
+		for (int i = 0; i < results.size(); i++) {
+			Clap clap = (Clap) results.get(i);
+			resultat.add(clap);
+		}
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+		return resultat;
+	};
 }

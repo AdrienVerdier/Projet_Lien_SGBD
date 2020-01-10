@@ -34,5 +34,9 @@ public class SceneExterieur extends Scene {
 		this.nocturne = nocturne;
 		this.codeLieu = codeLieu;
 	}
+	
+	public SceneExterieur() {
+		super();
+	}
 
 }

@@ -5,6 +5,8 @@ import javax.persistence.EntityManager;
 import model.Setup;
 
 public class DAOSetup {
+	//n'oublie pas de faire le lien entre la liste de Setup de la classe Scene voir tp2 Hibernate
+	//add à la liste de Setup de la Scene
 	public static void ajouterSetup(Setup Setup) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();

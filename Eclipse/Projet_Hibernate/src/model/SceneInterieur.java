@@ -23,5 +23,9 @@ public class SceneInterieur extends Scene {
 		super(codeScene, description, listSetup);
 		this.codeTheatre = codeTheatre;
 	}
+	
+	public SceneInterieur() {
+		super();
+	}
 
 }
