@@ -4,8 +4,19 @@ import javax.persistence.*;
 
 public class Connexion {
 
-	static public EntityManager ouvrirconnexion(String mode) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory(mode);
+private static EntityManagerFactory emf;
+	
+	public static void init()
+	{
+		emf = Persistence.createEntityManagerFactory("creation");
+	}
+	
+	public static void modification()
+	{
+		emf = Persistence.createEntityManagerFactory("modification");
+	}
+
+	static public EntityManager ouvrirconnexion() {
 		EntityManager em = emf.createEntityManager();
 		return em;
 	}

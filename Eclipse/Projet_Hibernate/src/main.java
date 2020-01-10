@@ -6,8 +6,7 @@ public class main {
 
 	public static void main(String[] args) {
 
-		EntityManager em = Connexion.ouvrirconnexion("modification");
-		Connexion.fermerconnexion(em);
+		Connexion.modification();
 
 		AppInterface Application = new AppInterface();
 		
