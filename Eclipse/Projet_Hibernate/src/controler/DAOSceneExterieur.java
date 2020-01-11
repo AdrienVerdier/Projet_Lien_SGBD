@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import model.Clap;
 import model.Lieu;
 import model.SceneExterieur;
 import model.Setup;
@@ -86,5 +87,9 @@ public class DAOSceneExterieur {
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 		return resultat;
+	};
+	
+	public static int retrunMaxIDSceneExterieur() {
+		return DAOScene.retrunMaxIDScene();
 	};
 }

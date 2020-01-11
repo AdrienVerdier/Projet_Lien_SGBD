@@ -88,4 +88,8 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 		return resultat;
 	};
+	
+	public static int retrunMaxIDSceneInterieur() {
+		return DAOScene.retrunMaxIDScene();
+	};
 }

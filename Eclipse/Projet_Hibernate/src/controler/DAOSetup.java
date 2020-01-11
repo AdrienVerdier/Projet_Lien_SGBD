@@ -78,4 +78,23 @@ public class DAOSetup {
 		Connexion.fermerconnexion(em);
 		return resultat;
 	};
+	
+	public static int retrunMaxIDSetup() {
+		EntityManager em = Connexion.ouvrirconnexion();
+		em.getTransaction().begin();
+		String queryString = "select s from Setup s";
+		Query query = em.createQuery(queryString);
+		List results = query.getResultList();
+		int max = 0;
+		for (int i = 0; i < results.size(); i++) {
+			Setup Setup = (Setup) results.get(i);
+			if(Setup.getCodeSetup() >= max)
+			{
+				max = Setup.getCodeSetup()+1;
+			}
+		}
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+		return max;
+	};
 }

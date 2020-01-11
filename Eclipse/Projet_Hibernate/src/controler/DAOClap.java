@@ -61,4 +61,23 @@ public class DAOClap {
 		Connexion.fermerconnexion(em);
 		return resultat;
 	};
+	
+	public static int retrunMaxIDClap() {
+		EntityManager em = Connexion.ouvrirconnexion();
+		em.getTransaction().begin();
+		String queryString = "select c from Clap c";
+		Query query = em.createQuery(queryString);
+		List results = query.getResultList();
+		int max = 0;
+		for (int i = 0; i < results.size(); i++) {
+			Clap clap = (Clap) results.get(i);
+			if(clap.getCodeClap() >= max)
+			{
+				max = clap.getCodeClap()+1;
+			}
+		}
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+		return max;
+	};
 }
