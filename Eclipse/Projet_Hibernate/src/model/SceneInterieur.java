@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 public class SceneInterieur extends Scene {
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Theatre codeTheatre;
 
 	public Theatre getCodeTheatre() {

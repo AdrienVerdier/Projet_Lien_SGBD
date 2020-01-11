@@ -10,7 +10,7 @@ public class SceneExterieur extends Scene {
 
 	// 1 = nocturne, 0 = jour
 	private int nocturne;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Lieu codeLieu;
 
 	public int getNocturne() {

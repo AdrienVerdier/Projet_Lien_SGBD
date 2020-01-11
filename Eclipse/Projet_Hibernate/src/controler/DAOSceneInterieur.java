@@ -32,7 +32,6 @@ public class DAOSceneInterieur {
 		listSetup.add(Setup);
 		SceneInterieur.setListSetup(listSetup);
 		em.getTransaction().commit();
-		DAOSetup.ajouterSetup(Setup);
 		Connexion.fermerconnexion(em);
 	}
 	

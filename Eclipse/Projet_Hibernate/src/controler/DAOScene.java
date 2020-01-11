@@ -9,6 +9,8 @@ import javax.persistence.Query;
 import model.Scene;
 
 public class DAOScene {
+	//toute cette classe est inutile non ?
+	
 	public static void ajouterScene(Scene Scene) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();

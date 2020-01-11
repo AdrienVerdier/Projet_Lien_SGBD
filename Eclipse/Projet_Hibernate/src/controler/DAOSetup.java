@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import model.Clap;
 import model.Setup;
 
 public class DAOSetup {
@@ -15,6 +16,21 @@ public class DAOSetup {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		em.persist(Setup);
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+	}
+	
+	public static void ajouterSetupClap(Setup Setup, Clap clap) {
+		EntityManager em = Connexion.ouvrirconnexion();		
+		em.getTransaction().begin();
+		List<Clap> listClap;
+		listClap = Setup.getListClap();
+		if(listClap == null)
+		{
+			listClap = new ArrayList<Clap>();
+		}
+		listClap.add(clap);
+		Setup.setListClap(listClap);
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}

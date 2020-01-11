@@ -32,7 +32,6 @@ public class DAOSceneExterieur {
 		listSetup.add(Setup);
 		SceneExterieur.setListSetup(listSetup);
 		em.getTransaction().commit();
-		DAOSetup.ajouterSetup(Setup);
 		Connexion.fermerconnexion(em);
 	}
 	
@@ -59,9 +58,7 @@ public class DAOSceneExterieur {
 		em.getTransaction().begin();
 		SceneExterieur NouveauSceneExterieur = em.find(SceneExterieur.class, IDSceneExterieur);
 		NouveauSceneExterieur.setDescription(SceneExterieur.getDescription());
-		NouveauSceneExterieur.setListSetup(SceneExterieur.getListSetup());
 		NouveauSceneExterieur.setNocturne(SceneExterieur.getNocturne());
-		NouveauSceneExterieur.setCodeLieu(SceneExterieur.getCodeLieu());
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
