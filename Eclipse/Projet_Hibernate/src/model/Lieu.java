@@ -46,7 +46,7 @@ public class Lieu {
 		super();
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "codeLieu")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "codeLieu")
 	private List<SceneExterieur> listSceneExterieur;
 
 	public Lieu(int codeLieu, String adresse, String description, List<SceneExterieur> listSceneExterieur) {

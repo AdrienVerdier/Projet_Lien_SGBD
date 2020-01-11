@@ -87,5 +87,8 @@ public class mainCreationBDD {
 		//DAOSetup.supprimerSetup(Setup2);
 		//DAOClap.supprimerClap(Clap2);
 		//DAOSceneExterieur.supprimerSceneExterieur(SceneExterieur1);
+		DAOLieu.supprimerLieu(Lieu1);
+		DAOSceneExterieur.modifierSceneExterieurLieu(1, null);
+		DAOSceneExterieur.modifierSceneExterieurLieu(3, null);
 	}
 }

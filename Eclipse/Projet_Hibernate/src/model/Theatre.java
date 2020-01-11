@@ -10,7 +10,7 @@ public class Theatre {
 	@Id
 	private int codeTheatre;
 	private String description;
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "codeTheatre")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "codeTheatre")
 	private List<SceneInterieur> listSceneInterieur;
 	public int getCodeTheatre() {
 		return codeTheatre;
