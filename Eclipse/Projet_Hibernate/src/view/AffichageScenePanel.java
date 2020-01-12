@@ -29,7 +29,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 2L;
 	private JButton searchButton, addButtonI, addButtonE, suppressButton, affichageTemps, ouvrir;
 	private JFrame frame;
-	private JTextField textZone1, textZone2;
+	private JTextField textZone1;
 	private JComboBox<String> dropDownList;
 	private JTable table;
 	private JLabel label;
@@ -163,7 +163,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		
 		if (e.getSource() == affichageTemps) {
 			int retour = JOptionPane.showConfirmDialog(this,
-					"Le temps total enregistré pour le film est : " + gestionScene.getTimeFilm(),
+					"Le temps total enregistré pour le film est : " + (gestionScene.getTimeFilm()%60) + "Minutes" + (gestionScene.getTimeFilm() - ((gestionScene.getTimeFilm()%60)*60))+ "Secondes",
 					"CONFIRM", JOptionPane.YES_OPTION);
 		}
 
@@ -180,7 +180,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		}
 		
 		if (e.getSource() == ouvrir) {
-			JPanel affichageSetupPanel = new affichageSetupPanel(frame, (int)table.getValueAt(table.getSelectedRow()));
+			JPanel AffichageSetupPanel = new AffichageSetupPanel(frame, (int)table.getValueAt(table.getSelectedRow(), 0));
 			frame.repaint();
 			frame.revalidate();
 		}

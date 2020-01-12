@@ -52,6 +52,15 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 		return SceneInterieur;
 	}
+	
+	public static SceneInterieur rechercheSceneInterieurByDescription(String Description) {
+		EntityManager em = Connexion.ouvrirconnexion();
+		em.getTransaction().begin();
+		SceneInterieur SceneInterieur = em.find(SceneInterieur.class, Description);
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+		return SceneInterieur;
+	}
 
 	public static void modifierSceneInterieur(int IDSceneInterieur, SceneInterieur SceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();

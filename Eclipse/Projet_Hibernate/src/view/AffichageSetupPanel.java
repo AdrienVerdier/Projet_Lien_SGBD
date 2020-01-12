@@ -30,10 +30,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
+import controler.gestionSetup;
 import controler.myTableSetupManagement;
+import java.util.ArrayList;
 
 public class AffichageSetupPanel extends JPanel implements ActionListener {
 	
+	private static final long serialVersionUID = 4L;
 	private JButton returnButton, searchButton, addButton, suppressButton, affichageTemps, numeroBobine, ouvrir;
 	private JFrame frame;
 	private JTextField textZone1;
@@ -57,7 +60,7 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		label.setBounds(25, 0, 250, 40);
 		this.add(label);
 
-		searchButton = new JButton("search");
+		searchButton = new JButton("Rechercher");
 		searchButton.setLayout(new BorderLayout());
 		searchButton.setFont(new Font("Arial", Font.BOLD, 20));
 		searchButton.setBounds(50, 75, 100, 50);
@@ -80,7 +83,7 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		this.add(dropDownList);
 		dropDownList.addItem("codeSetup");
 
-		addButton = new JButton("ADD");
+		addButton = new JButton("Ajouter");
 		addButton.setBounds(AppInterface.windowsSizeX - 225, 75, 175, 50);
 		addButton.setFont(new Font("Arial", Font.BOLD, 20));
 		addButton.setForeground(Color.BLACK);
@@ -93,7 +96,6 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		tablemodel = new myTableSetupManagement(title, codeScene);
 		table = new JTable(tablemodel);
 		tablemodel.setTable(table);
-		tablemodel.setToggleButton(modifyButton);
 		JScrollPane tableContainer = new JScrollPane(table);
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
 		table.getTableHeader().setForeground(Color.white);
@@ -106,7 +108,7 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 
 		sorter = new TableRowSorter<myTableSetupManagement>(tablemodel);
 
-		suppressButton = new JButton("Suppess");
+		suppressButton = new JButton("Supprimer");
 		suppressButton.setBounds(AppInterface.windowsSizeX - 225, 225, 175, 50);
 		suppressButton.setFont(new Font("Arial", Font.BOLD, 20));
 		suppressButton.setForeground(Color.BLACK);
@@ -114,7 +116,7 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		this.add(suppressButton);
 		suppressButton.addActionListener(this);
 
-		returnButton = new JButton("RETURN");
+		returnButton = new JButton("RETOUR");
 		returnButton.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 125, 175, 50);
 		returnButton.setFont(new Font("Arial", Font.BOLD, 20));
 		returnButton.setForeground(Color.BLACK);
@@ -188,6 +190,22 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 				if (retour == JOptionPane.OK_OPTION)
 					tablemodel.removeRow(table.getSelectedRow());
 			}
+		}
+		
+		if (e.getSource() == affichageTemps) {
+			int retour = JOptionPane.showConfirmDialog(this,
+					"Le temps total enregistré pour cette scène est : " + (gestionSetup.getTimeScene(codeScene)%60) + "Minute" + (gestionSetup.getTimeScene(codeScene) - ((gestionSetup.getTimeScene(codeScene)%60)*60)) +"Seconds",
+					"CONFIRM", JOptionPane.YES_OPTION);
+		}
+		
+		if (e.getSource() == numeroBobine) {
+			ArrayList<Integer> listeBobine = gestionSetup.getBobine(codeScene);
+		}
+		
+		if (e.getSource() == ouvrir) {
+			JPanel AffichageClapPanel = new AffichageClapPanel(frame, codeScene, (int)table.getValueAt(table.getSelectedRow(), 0));
+			frame.repaint();
+			frame.revalidate();
 		}
 	}
 
