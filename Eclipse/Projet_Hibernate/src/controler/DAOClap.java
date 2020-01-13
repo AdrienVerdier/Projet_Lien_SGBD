@@ -10,6 +10,10 @@ import model.Clap;
 public class DAOClap {
 	//n'oublie pas de faire le lien entre la liste de Clap de la classe Setup voir tp2 Hibernate
 
+	/**
+	 * Cette méthode ajoute un clap à la base de données
+	 * @param Clap le clap que l'on veut ajouter à la base de données
+	 */
 	public static void ajouterClap(Clap Clap) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -18,6 +22,10 @@ public class DAOClap {
 		Connexion.fermerconnexion(em);
 	}
 
+	/**
+	 * Cette méthode supprime un clap à la base de données
+	 * @param Clap le clap que l'on veut supprimer à la base de données
+	 */
 	public static void supprimerClap(Clap Clap) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -27,6 +35,11 @@ public class DAOClap {
 		Connexion.fermerconnexion(em);
 	}
 
+	/**
+	 * Cette méthode recherche un clap de la base de données à partir de son Id
+	 * @param IDClap l'Id du clap que l'on recherche
+	 * @return l'objet clap recherché 
+	 */
 	public static Clap rechercheClapById(int IDClap) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -36,6 +49,11 @@ public class DAOClap {
 		return Clap;
 	}
 
+	/**
+	 * Cette méthode permet de modifier un clap existant dans la base de données
+	 * @param IDClap l'Id du clap que l'on veut modifié 
+	 * @param Clap le clap qui contient les nouvelles données du Clap
+	 */
 	public static void modifierCLap(int IDClap, Clap Clap) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -46,6 +64,10 @@ public class DAOClap {
 		Connexion.fermerconnexion(em);
 	}
 
+	/**
+	 * Cette méthode renvoie tous les objets Clap de la base de données
+	 * @return une liste de tous les objets Clap de la base de données
+	 */
 	public static ArrayList<Clap> returnAllClap() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -62,6 +84,10 @@ public class DAOClap {
 		return resultat;
 	};
 	
+	/**
+	 * Cette méthode renvoie la prochaine Id du prochain Clap
+	 * @return le numéro d'Id du prochain Clap
+	 */
 	public static int returnMaxIDClap() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();

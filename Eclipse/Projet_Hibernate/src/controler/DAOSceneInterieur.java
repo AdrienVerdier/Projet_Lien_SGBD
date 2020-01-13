@@ -7,11 +7,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import model.Theatre;
+import model.Scene;
 import model.SceneInterieur;
 import model.Setup;
 
 public class DAOSceneInterieur {
-	
+	/**
+	 * Cette méthode ajoute un SceneInterieur à la base de données
+	 * @param SceneInterieur le SceneInterieur que l'on veut ajouter à la base de données
+	 */
 	public static void ajouterSceneInterieur(SceneInterieur SceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -19,7 +23,12 @@ public class DAOSceneInterieur {
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
-
+	
+	/**
+	 * Cette méthode ajoute un Setup à une SceneInterieur
+	 * @param SceneInterieur la SceneInterieur à laquelle on veut ajouter le Setup
+	 * @param Setup le Setup que l'on veut ajouter
+	 */
 	public static void ajouterSceneInterieurSetup(SceneInterieur SceneInterieur,Setup Setup) {
 		EntityManager em = Connexion.ouvrirconnexion();		
 		em.getTransaction().begin();
@@ -34,7 +43,11 @@ public class DAOSceneInterieur {
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
-	
+
+	/**
+	 * Cette méthode supprime un SceneInterieur à la base de données
+	 * @param SceneInterieur le SceneInterieur que l'on veut supprimer à la base de données
+	 */
 	public static void supprimerSceneInterieur(SceneInterieur SceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -43,7 +56,11 @@ public class DAOSceneInterieur {
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
-
+	/**
+	 * Cette méthode recherche un SceneInterieur de la base de données à partir de son Id
+	 * @param IDSceneInterieur l'Id du SceneInterieur que l'on recherche
+	 * @return l'objet SceneInterieur recherché 
+	 */
 	public static SceneInterieur rechercheSceneInterieurById(int IDSceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -52,16 +69,11 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 		return SceneInterieur;
 	}
-	
-	public static SceneInterieur rechercheSceneInterieurByDescription(String Description) {
-		//à faire pour que ça marche
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		SceneInterieur SceneInterieur = em.find(SceneInterieur.class, Description);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
-		return SceneInterieur;
-	}
+	/**
+	 * Cette méthode permet de modifier un SceneInterieur existant dans la base de données
+	 * @param IDSceneInterieur l'Id du SceneInterieur que l'on veut modifié 
+	 * @param SceneInterieur le SceneInterieur qui contient les nouvelles données du SceneInterieur
+	 */
 
 	public static void modifierSceneInterieur(int IDSceneInterieur, SceneInterieur SceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
@@ -73,7 +85,11 @@ public class DAOSceneInterieur {
 		em.getTransaction().commit();
 		Connexion.fermerconnexion(em);
 	}
-	
+	/**
+	 * Cette méthode modifie le Theatre d'une IDSceneInterieur
+	 * @param IDIDSceneInterieur l'Id de la IDSceneInterieur dont on veut modifier le Theatre
+	 * @param Theatre le nouveau Theatre
+	 */
 	public static void modifierSceneInterieurTheatre(int IDSceneInterieur, Theatre Theatre) {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -83,6 +99,10 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 	}
 
+	/**
+	 * Cette méthode renvoie tous les objets SceneInterieur de la base de données
+	 * @return une liste de tous les objets SceneInterieur de la base de données
+	 */
 	public static List<SceneInterieur> returnAllSceneInterieur() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
@@ -98,8 +118,26 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 		return resultat;
 	};
-	
+	/**
+	 * Cette méthode renvoie la prochaine Id du prochain SceneInterieur
+	 * @return le numéro d'Id du prochain SceneInterieur
+	 */
 	public static int returnMaxIDSceneInterieur() {
-		return DAOScene.returnMaxIDScene();
+		EntityManager em = Connexion.ouvrirconnexion();
+		em.getTransaction().begin();
+		String queryString = "select s from Scene s";
+		Query query = em.createQuery(queryString);
+		List results = query.getResultList();
+		int max = 0;
+		for (int i = 0; i < results.size(); i++) {
+			Scene Scene = (Scene) results.get(i);
+			if(Scene.getCodeScene() >= max)
+			{
+				max = Scene.getCodeScene()+1;
+			}
+		}
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+		return max;
 	};
 }

@@ -83,7 +83,7 @@ public class mainCreationBDD {
 		DAOClap.ajouterClap(Clap4);
 		DAOSetup.ajouterSetupClap(Setup3, Clap5);
 		DAOClap.ajouterClap(Clap5);
-		System.out.println(DAOClap.retrunMaxIDClap()); // 5 existants donc new id = 6
+		System.out.println(DAOClap.returnMaxIDClap()); // 5 existants donc new id = 6
 		//DAOSetup.supprimerSetup(Setup2);
 		//DAOClap.supprimerClap(Clap2);
 		//DAOSceneExterieur.supprimerSceneExterieur(SceneExterieur1);
