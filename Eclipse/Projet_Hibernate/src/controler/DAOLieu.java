@@ -47,7 +47,7 @@ public class DAOLieu {
 	}
 	/**
 	 * Cette méthode permet de modifier un Lieu existant dans la base de données
-	 * @param IDLieu l'Id du Lieu que l'on veut modifié 
+	 * @param IDLieu l'Id du Lieu que l'on veut modifier 
 	 * @param Lieu le Lieu qui contient les nouvelles données du Lieu
 	 */
 	public static void modifierLieu(int IDLieu, Lieu Lieu) {

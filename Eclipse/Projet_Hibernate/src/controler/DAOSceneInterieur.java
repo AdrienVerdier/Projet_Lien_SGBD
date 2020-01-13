@@ -13,8 +13,8 @@ import model.Setup;
 
 public class DAOSceneInterieur {
 	/**
-	 * Cette méthode ajoute un SceneInterieur à la base de données
-	 * @param SceneInterieur le SceneInterieur que l'on veut ajouter à la base de données
+	 * Cette méthode ajoute une SceneInterieur à la base de données
+	 * @param SceneInterieur la SceneInterieur que l'on veut ajouter à la base de données
 	 */
 	public static void ajouterSceneInterieur(SceneInterieur SceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
@@ -45,8 +45,8 @@ public class DAOSceneInterieur {
 	}
 
 	/**
-	 * Cette méthode supprime un SceneInterieur à la base de données
-	 * @param SceneInterieur le SceneInterieur que l'on veut supprimer à la base de données
+	 * Cette méthode supprime une SceneInterieur à la base de données
+	 * @param SceneInterieur la SceneInterieur que l'on veut supprimer à la base de données
 	 */
 	public static void supprimerSceneInterieur(SceneInterieur SceneInterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
@@ -57,7 +57,7 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 	}
 	/**
-	 * Cette méthode recherche un SceneInterieur de la base de données à partir de son Id
+	 * Cette méthode recherche une SceneInterieur de la base de données à partir de son Id
 	 * @param IDSceneInterieur l'Id du SceneInterieur que l'on recherche
 	 * @return l'objet SceneInterieur recherché 
 	 */
@@ -70,9 +70,9 @@ public class DAOSceneInterieur {
 		return SceneInterieur;
 	}
 	/**
-	 * Cette méthode permet de modifier un SceneInterieur existant dans la base de données
-	 * @param IDSceneInterieur l'Id du SceneInterieur que l'on veut modifié 
-	 * @param SceneInterieur le SceneInterieur qui contient les nouvelles données du SceneInterieur
+	 * Cette méthode permet de modifier une SceneInterieur existant dans la base de données
+	 * @param IDSceneInterieur l'Id de la SceneInterieur que l'on veut modifier
+	 * @param SceneInterieur la SceneInterieur qui contient les nouvelles données du SceneInterieur
 	 */
 
 	public static void modifierSceneInterieur(int IDSceneInterieur, SceneInterieur SceneInterieur) {

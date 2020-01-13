@@ -51,7 +51,7 @@ public class DAOClap {
 
 	/**
 	 * Cette méthode permet de modifier un clap existant dans la base de données
-	 * @param IDClap l'Id du clap que l'on veut modifié 
+	 * @param IDClap l'Id du clap que l'on veut modifier
 	 * @param Clap le clap qui contient les nouvelles données du Clap
 	 */
 	public static void modifierCLap(int IDClap, Clap Clap) {
