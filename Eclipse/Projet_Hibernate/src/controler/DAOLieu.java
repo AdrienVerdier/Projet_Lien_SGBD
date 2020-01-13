@@ -35,6 +35,16 @@ public class DAOLieu {
 		Connexion.fermerconnexion(em);
 		return Lieu;
 	}
+	
+	public static Lieu rechercheLieuByDescription(String description) {
+		// à faire pour que ça marche
+		EntityManager em = Connexion.ouvrirconnexion();
+		em.getTransaction().begin();
+		Lieu Lieu = em.find(Lieu.class, description);
+		em.getTransaction().commit();
+		Connexion.fermerconnexion(em);
+		return Lieu;
+	}
 
 	public static void modifierLieu(int IDLieu, Lieu Lieu) {
 		EntityManager em = Connexion.ouvrirconnexion();

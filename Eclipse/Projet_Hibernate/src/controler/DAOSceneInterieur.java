@@ -54,6 +54,7 @@ public class DAOSceneInterieur {
 	}
 	
 	public static SceneInterieur rechercheSceneInterieurByDescription(String Description) {
+		//à faire pour que ça marche
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		SceneInterieur SceneInterieur = em.find(SceneInterieur.class, Description);

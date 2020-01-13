@@ -72,20 +72,37 @@ public class gestionScene {
 	public static boolean ajouterSceneInterieur(String descriptionScene, String DescriptionTheatre, boolean isNew) {
 		
 		if(isNew) {
-			
+			Theatre Theatre = new Theatre(DAOTheatre.retrunMaxIDTheatre(),DescriptionTheatre,null);
+			SceneInterieur SceneInterieur = new SceneInterieur(DAOSceneInterieur.retrunMaxIDSceneInterieur(),descriptionScene,null,Theatre);
+			DAOTheatre.ajouterTheatre(Theatre);
+			DAOSceneInterieur.ajouterSceneInterieur(SceneInterieur);
 		} else {
-			
+			Theatre theatre = DAOTheatre.rechercheTheatreByDescription(DescriptionTheatre);
+			SceneInterieur SceneInterieur = new SceneInterieur(DAOSceneInterieur.retrunMaxIDSceneInterieur(),descriptionScene,null,theatre);
+			DAOSceneInterieur.ajouterSceneInterieur(SceneInterieur);
 		}
 		
 		return true;
 	}
 	
 	public static boolean ajouterSceneExterieur(String descriptionScene, boolean isNocturne, String AdresseLieu, String descriptionLieu, boolean isNew) {
+		int noc;
+		if(isNocturne) {
+			noc = 1;
+		}else {
+			noc = 0;
+		}
 		
 		if(isNew) {
-			
+			Lieu Lieu = new Lieu(DAOLieu.retrunMaxIDLieu(),AdresseLieu,descriptionLieu,null);
+			SceneExterieur SceneExterieur = new SceneExterieur(DAOSceneExterieur.retrunMaxIDSceneExterieur(),descriptionScene,null,noc,Lieu);
+			DAOLieu.ajouterLieu(Lieu);
+			DAOSceneExterieur.ajouterSceneExterieur(SceneExterieur);
 		} else {
-			
+			Lieu Lieu = DAOLieu.rechercheLieuByDescription(descriptionLieu);
+			SceneExterieur SceneExterieur = new SceneExterieur(DAOSceneExterieur.retrunMaxIDSceneExterieur(),descriptionScene,null,noc,Lieu);
+			DAOLieu.ajouterLieu(Lieu);
+			DAOSceneExterieur.ajouterSceneExterieur(SceneExterieur);
 		}
 		
 		return true;
@@ -104,14 +121,6 @@ public class gestionScene {
 	}
 	
 	public static ArrayList<SceneExterieur> getSceneExterieur(){
-		
-	}
-
-	public static ArrayList<Theatre> getTheatre(){
-		
-	}
-	
-	public static ArrayList<Lieu> getLieu(){
 		
 	}
 	
