@@ -13,8 +13,8 @@ import model.Setup;
 
 public class DAOSceneExterieur {
 	/**
-	 * Cette méthode ajoute un SceneExterieur à la base de données
-	 * @param SceneExterieur le SceneExterieur que l'on veut ajouter à la base de données
+	 * Cette méthode ajoute une SceneExterieur à la base de données
+	 * @param SceneExterieur la SceneExterieur que l'on veut ajouter à la base de données
 	 */
 	public static void ajouterSceneExterieur(SceneExterieur SceneExterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
@@ -45,8 +45,8 @@ public class DAOSceneExterieur {
 	}
 
 	/**
-	 * Cette méthode supprime un SceneExterieur à la base de données
-	 * @param SceneExterieur le SceneExterieur que l'on veut supprimer à la base de données
+	 * Cette méthode supprime une SceneExterieur à la base de données
+	 * @param SceneExterieur la SceneExterieur que l'on veut supprimer à la base de données
 	 */
 	public static void supprimerSceneExterieur(SceneExterieur SceneExterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
@@ -57,8 +57,8 @@ public class DAOSceneExterieur {
 		Connexion.fermerconnexion(em);
 	}
 	/**
-	 * Cette méthode recherche un SceneExterieur de la base de données à partir de son Id
-	 * @param IDSceneExterieur l'Id du SceneExterieur que l'on recherche
+	 * Cette méthode recherche une SceneExterieur de la base de données à partir de son Id
+	 * @param IDSceneExterieur l'Id de la SceneExterieur que l'on recherche
 	 * @return l'objet SceneExterieur recherché 
 	 */
 	public static SceneExterieur rechercheSceneExterieurById(int IDSceneExterieur) {
@@ -70,9 +70,9 @@ public class DAOSceneExterieur {
 		return SceneExterieur;
 	}
 	/**
-	 * Cette méthode permet de modifier un SceneExterieur existant dans la base de données
-	 * @param IDSceneExterieur l'Id du SceneExterieur que l'on veut modifié 
-	 * @param SceneExterieur le SceneExterieur qui contient les nouvelles données du SceneExterieur
+	 * Cette méthode permet de modifier une SceneExterieur existant dans la base de données
+	 * @param IDSceneExterieur l'Id de la SceneExterieur que l'on veut modifier 
+	 * @param SceneExterieur la SceneExterieur qui contient les nouvelles données de la SceneExterieur
 	 */
 	public static void modifierSceneExterieur(int IDSceneExterieur, SceneExterieur SceneExterieur) {
 		EntityManager em = Connexion.ouvrirconnexion();
