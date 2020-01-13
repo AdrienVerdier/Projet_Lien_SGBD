@@ -35,16 +35,6 @@ public class DAOTheatre {
 		Connexion.fermerconnexion(em);
 		return Theatre;
 	}
-	
-	public static Theatre rechercheTheatreByDescription(String description) {
-		//à faire pour que ça marche
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Theatre Theatre = em.find(Theatre.class, description);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
-		return Theatre;
-	}
 
 	public static void modifierTheatre(int IDTheatre, Theatre Theatre) {
 		EntityManager em = Connexion.ouvrirconnexion();

@@ -102,7 +102,7 @@ public class DAOSceneExterieur {
 	 * Cette méthode renvoie tous les objets SceneExterieur de la base de données
 	 * @return une liste de tous les objets SceneExterieur de la base de données
 	 */
-	public static List<SceneExterieur> returnAllSceneExterieur() {
+	public static ArrayList<SceneExterieur> returnAllSceneExterieur() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<SceneExterieur> resultat = new ArrayList<SceneExterieur>();

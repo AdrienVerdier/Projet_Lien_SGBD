@@ -8,7 +8,6 @@ import java.util.Iterator;
 
 import model.Lieu;
 import model.Theatre;
-import model.Scene;
 import model.SceneExterieur;
 import model.SceneInterieur;
 
@@ -44,7 +43,7 @@ public class gestionScene {
 	}
 	
 	public static JComboBox<String> RemplirListeTheatre (JComboBox<String> dropDownList){
-		Iterator<Theatre> theatre = DAOTheatre.retrunAllTheatre().iterator();
+		Iterator<Theatre> theatre = DAOTheatre.returnAllTheatre().iterator();
 		Theatre tmp;
 		
 		while(theatre.hasNext()) {
@@ -57,7 +56,7 @@ public class gestionScene {
 	}
 	
 	public static JComboBox<String> RemplirListeLieu (JComboBox<String> dropDownList){
-		Iterator<Lieu> lieu = DAOLieu.retrunAllLieu().iterator();
+		Iterator<Lieu> lieu = DAOLieu.returnAllLieu().iterator();
 		Lieu tmp;
 		
 		while(lieu.hasNext()){
@@ -72,13 +71,21 @@ public class gestionScene {
 	public static boolean ajouterSceneInterieur(String descriptionScene, String DescriptionTheatre, boolean isNew) {
 		
 		if(isNew) {
-			Theatre Theatre = new Theatre(DAOTheatre.retrunMaxIDTheatre(),DescriptionTheatre,null);
-			SceneInterieur SceneInterieur = new SceneInterieur(DAOSceneInterieur.retrunMaxIDSceneInterieur(),descriptionScene,null,Theatre);
+			Theatre Theatre = new Theatre(DAOTheatre.returnMaxIDTheatre(),DescriptionTheatre,null);
+			SceneInterieur SceneInterieur = new SceneInterieur(DAOSceneInterieur.returnMaxIDSceneInterieur(),descriptionScene,null,Theatre);
 			DAOTheatre.ajouterTheatre(Theatre);
 			DAOSceneInterieur.ajouterSceneInterieur(SceneInterieur);
 		} else {
-			Theatre theatre = DAOTheatre.rechercheTheatreByDescription(DescriptionTheatre);
-			SceneInterieur SceneInterieur = new SceneInterieur(DAOSceneInterieur.retrunMaxIDSceneInterieur(),descriptionScene,null,theatre);
+			Iterator<Theatre> iter = DAOTheatre.returnAllTheatre().iterator();
+			Theatre tmp;
+			Theatre theatre = new Theatre();
+			while(iter.hasNext()) {
+				tmp = iter.next();
+				if(tmp.getDescription() == DescriptionTheatre) {
+					theatre = tmp;
+				}
+			}
+			SceneInterieur SceneInterieur = new SceneInterieur(DAOSceneInterieur.returnMaxIDSceneInterieur(),descriptionScene,null,theatre);
 			DAOSceneInterieur.ajouterSceneInterieur(SceneInterieur);
 		}
 		
@@ -94,14 +101,21 @@ public class gestionScene {
 		}
 		
 		if(isNew) {
-			Lieu Lieu = new Lieu(DAOLieu.retrunMaxIDLieu(),AdresseLieu,descriptionLieu,null);
-			SceneExterieur SceneExterieur = new SceneExterieur(DAOSceneExterieur.retrunMaxIDSceneExterieur(),descriptionScene,null,noc,Lieu);
+			Lieu Lieu = new Lieu(DAOLieu.returnMaxIDLieu(),AdresseLieu,descriptionLieu,null);
+			SceneExterieur SceneExterieur = new SceneExterieur(DAOSceneExterieur.returnMaxIDSceneExterieur(),descriptionScene,null,noc,Lieu);
 			DAOLieu.ajouterLieu(Lieu);
 			DAOSceneExterieur.ajouterSceneExterieur(SceneExterieur);
 		} else {
-			Lieu Lieu = DAOLieu.rechercheLieuByDescription(descriptionLieu);
-			SceneExterieur SceneExterieur = new SceneExterieur(DAOSceneExterieur.retrunMaxIDSceneExterieur(),descriptionScene,null,noc,Lieu);
-			DAOLieu.ajouterLieu(Lieu);
+			Iterator<Lieu> iter = DAOLieu.returnAllLieu().iterator();
+			Lieu tmp;
+			Lieu lieu = new Lieu();
+			while(iter.hasNext()) {
+				tmp = iter.next();
+				if(tmp.getDescription() == descriptionLieu) {
+					lieu = tmp;
+				}
+			}
+			SceneExterieur SceneExterieur = new SceneExterieur(DAOSceneExterieur.returnMaxIDSceneExterieur(),descriptionScene,null,noc,lieu);
 			DAOSceneExterieur.ajouterSceneExterieur(SceneExterieur);
 		}
 		
@@ -109,19 +123,24 @@ public class gestionScene {
 	}
 	
 	public static int nombreScene() {		
-		return 1;
+		return DAOSceneInterieur.returnAllSceneInterieur().size() + DAOSceneExterieur.returnAllSceneExterieur().size();
 	}
 	
 	public static void supprimerScene(int codeScene) {
-		
+		if(DAOSceneExterieur.rechercheSceneExterieurById(codeScene) != null) {
+			DAOSceneExterieur.supprimerSceneExterieur(DAOSceneExterieur.rechercheSceneExterieurById(codeScene));
+		}
+		else {
+			DAOSceneInterieur.supprimerSceneInterieur(DAOSceneInterieur.rechercheSceneInterieurById(codeScene));
+		}
 	}
 	
 	public static ArrayList<SceneInterieur> getSceneInterieur(){
-		
+		return DAOSceneInterieur.returnAllSceneInterieur();
 	}
 	
 	public static ArrayList<SceneExterieur> getSceneExterieur(){
-		
+		return DAOSceneExterieur.returnAllSceneExterieur();
 	}
 	
 }

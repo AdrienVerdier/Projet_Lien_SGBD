@@ -5,10 +5,7 @@ import java.util.Iterator;
 
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
-import model.Lieu;
-import model.Theatre;
 import model.Scene;
 import model.SceneExterieur;
 import model.SceneInterieur;
@@ -45,7 +42,7 @@ public class myTableSceneManagement extends AbstractTableModel {
 		this.fireTableDataChanged();
 	}
 
-	private int isIn(Scene scene) {
+	public static int isIn(Scene scene) {
 		// renvoie -1 si intérieur, 1 si extérieur, Inchallah il renvoie jamais 0
 		
 		Iterator<SceneExterieur> iter1 = gestionScene.getSceneExterieur().iterator();

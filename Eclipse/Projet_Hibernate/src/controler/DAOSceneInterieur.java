@@ -103,7 +103,7 @@ public class DAOSceneInterieur {
 	 * Cette méthode renvoie tous les objets SceneInterieur de la base de données
 	 * @return une liste de tous les objets SceneInterieur de la base de données
 	 */
-	public static List<SceneInterieur> returnAllSceneInterieur() {
+	public static ArrayList<SceneInterieur> returnAllSceneInterieur() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<SceneInterieur> resultat = new ArrayList<SceneInterieur>();

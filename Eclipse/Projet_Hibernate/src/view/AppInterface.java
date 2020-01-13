@@ -18,13 +18,13 @@ public class AppInterface extends JFrame{
             e.printStackTrace();
         }
 
-		this.setTitle("Application de gestion de fichier");
+		this.setTitle("Application de gestion de scène");
 		this.setResizable(false);
 		this.setSize(windowsSizeX, windowsSizeY);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//JPanel AffichageScenePanel = new AffichageScenePanel(this);
+		JPanel AffichageScenePanel = new AffichageScenePanel(this);
 
 		this.setVisible(true);
 	}
