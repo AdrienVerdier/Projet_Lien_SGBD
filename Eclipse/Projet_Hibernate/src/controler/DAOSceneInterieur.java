@@ -83,7 +83,7 @@ public class DAOSceneInterieur {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static List<SceneInterieur> retrunAllSceneInterieur() {
+	public static List<SceneInterieur> returnAllSceneInterieur() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<SceneInterieur> resultat = new ArrayList<SceneInterieur>();
@@ -99,7 +99,7 @@ public class DAOSceneInterieur {
 		return resultat;
 	};
 	
-	public static int retrunMaxIDSceneInterieur() {
-		return DAOScene.retrunMaxIDScene();
+	public static int returnMaxIDSceneInterieur() {
+		return DAOScene.returnMaxIDScene();
 	};
 }

@@ -56,7 +56,7 @@ public class DAOLieu {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static ArrayList<Lieu> retrunAllLieu() {
+	public static ArrayList<Lieu> returnAllLieu() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<Lieu> resultat = new ArrayList<Lieu>();
@@ -72,7 +72,7 @@ public class DAOLieu {
 		return resultat;
 	};
 	
-	public static int retrunMaxIDLieu() {
+	public static int returnMaxIDLieu() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		String queryString = "select l from Lieu l";

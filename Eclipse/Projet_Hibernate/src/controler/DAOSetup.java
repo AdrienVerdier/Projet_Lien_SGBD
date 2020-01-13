@@ -63,7 +63,7 @@ public class DAOSetup {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static ArrayList<Setup> retrunAllSetup() {
+	public static ArrayList<Setup> returnAllSetup() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<Setup> resultat = new ArrayList<Setup>();
@@ -79,7 +79,7 @@ public class DAOSetup {
 		return resultat;
 	};
 	
-	public static int retrunMaxIDSetup() {
+	public static int returnMaxIDSetup() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		String queryString = "select s from Setup s";

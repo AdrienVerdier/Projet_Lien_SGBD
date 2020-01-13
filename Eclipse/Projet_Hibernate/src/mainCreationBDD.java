@@ -61,7 +61,7 @@ public class mainCreationBDD {
 		DAOSetup.ajouterSetup(Setup2);
 		System.out.println(SceneExterieur1.getListSetup());
 		//DAOSetup.supprimerSetup(Setup2);
-		System.out.println(DAOSetup.retrunAllSetup());
+		System.out.println(DAOSetup.returnAllSetup());
 		DAOSceneInterieur.ajouterSceneInterieurSetup(SceneInterieur1, Setup3);
 		DAOSetup.ajouterSetup(Setup3);
 		//DAOLieu.supprimerLieu(Lieu1);
@@ -90,5 +90,6 @@ public class mainCreationBDD {
 		DAOLieu.supprimerLieu(Lieu1);
 		DAOSceneExterieur.modifierSceneExterieurLieu(1, null);
 		DAOSceneExterieur.modifierSceneExterieurLieu(3, null);
+		
 	}
 }

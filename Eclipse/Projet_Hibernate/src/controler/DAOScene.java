@@ -48,7 +48,7 @@ public class DAOScene {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static List<Scene> retrunAllScene() {
+	public static List<Scene> returnAllScene() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<Scene> resultat = new ArrayList<Scene>();
@@ -64,7 +64,7 @@ public class DAOScene {
 		return resultat;
 	};
 	
-	public static int retrunMaxIDScene() {
+	public static int returnMaxIDScene() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		String queryString = "select s from Scene s";

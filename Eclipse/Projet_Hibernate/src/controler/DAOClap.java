@@ -46,7 +46,7 @@ public class DAOClap {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static ArrayList<Clap> retrunAllClap() {
+	public static ArrayList<Clap> returnAllClap() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<Clap> resultat = new ArrayList<Clap>();
@@ -62,7 +62,7 @@ public class DAOClap {
 		return resultat;
 	};
 	
-	public static int retrunMaxIDClap() {
+	public static int returnMaxIDClap() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		String queryString = "select c from Clap c";

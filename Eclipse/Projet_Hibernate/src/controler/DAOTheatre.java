@@ -55,7 +55,7 @@ public class DAOTheatre {
 		Connexion.fermerconnexion(em);
 	}
 
-	public static ArrayList<Theatre> retrunAllTheatre() {
+	public static ArrayList<Theatre> returnAllTheatre() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		ArrayList<Theatre> resultat = new ArrayList<Theatre>();
@@ -71,7 +71,7 @@ public class DAOTheatre {
 		return resultat;
 	};
 	
-	public static int retrunMaxIDTheatre() {
+	public static int returnMaxIDTheatre() {
 		EntityManager em = Connexion.ouvrirconnexion();
 		em.getTransaction().begin();
 		String queryString = "select t from Theatre t";
