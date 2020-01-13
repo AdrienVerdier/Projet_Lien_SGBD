@@ -48,27 +48,32 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		label.setBounds(25, 0, 250, 40);
 		this.add(label);
 
-		addButtonI = new JButton("Ajouter");
+		addButtonI = new JButton("Ajouter Scène Intérieur");
 		addButtonI.setBounds(AppInterface.windowsSizeX - 225, 75, 175, 50);
 		addButtonI.setFont(new Font("Arial", Font.BOLD, 20));
 		addButtonI.setForeground(Color.BLACK);
 		addButtonI.setBackground(Color.LIGHT_GRAY);
+		addButtonI.setOpaque(true);
 		this.add(addButtonI);
 		addButtonI.addActionListener(this);
 		
-		addButtonE = new JButton("Ajouter");
-		addButtonE.setBounds(AppInterface.windowsSizeX - 225, 75, 175, 50);
+		addButtonE = new JButton("Ajouter Scène Extérieur");
+		addButtonE.setLayout(new BorderLayout());
+		addButtonE.setBounds(AppInterface.windowsSizeX - 225, 350, 175, 50);
 		addButtonE.setFont(new Font("Arial", Font.BOLD, 20));
 		addButtonE.setForeground(Color.BLACK);
 		addButtonE.setBackground(Color.LIGHT_GRAY);
+		addButtonE.setOpaque(true);
 		this.add(addButtonE);
 		addButtonE.addActionListener(this);
 
 		suppressButton = new JButton("Supprimer");
+		suppressButton.setLayout(new BorderLayout());
 		suppressButton.setBounds(AppInterface.windowsSizeX - 225, 225, 175, 50);
 		suppressButton.setFont(new Font("Arial", Font.BOLD, 20));
 		suppressButton.setForeground(Color.BLACK);
 		suppressButton.setBackground(Color.LIGHT_GRAY);
+		suppressButton.setOpaque(true);
 		this.add(suppressButton);
 		suppressButton.addActionListener(this);
 		
@@ -83,15 +88,19 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		searchButton.addActionListener(this);
 		
 		textZone1 = new JTextField();
+		textZone1.setLayout(new BorderLayout());
 		textZone1.setFont(new Font("Arial", Font.PLAIN, 18));
 		textZone1.setLayout(null);
 		textZone1.setBounds(150, 75, 300, 50);
+		textZone1.setOpaque(true);
 		this.add(textZone1);
 		textZone1.setHorizontalAlignment(JTextField.CENTER);
 
 		dropDownList = new JComboBox<String>();
+		dropDownList.setLayout(new BorderLayout());
 		dropDownList.setBounds(450, 75, 185, 50);
 		dropDownList.setFont(new Font("Arial", Font.BOLD, 20));
+		dropDownList.setOpaque(true);
 		this.add(dropDownList);
 		dropDownList.addItem("codeScene");
 		dropDownList.addItem("codeTheatre");
@@ -99,18 +108,22 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		dropDownList.addItem("Adresse");
 		
 		affichageTemps = new JButton("Affichage du temps total d'enregistrement");
+		affichageTemps.setLayout(new BorderLayout());
 		affichageTemps.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 125, 175, 50);
 		affichageTemps.setFont(new Font("Arial", Font.BOLD, 20));
 		affichageTemps.setForeground(Color.BLACK);
 		affichageTemps.setBackground(Color.LIGHT_GRAY);
+		affichageTemps.setOpaque(true);
 		this.add(affichageTemps);
 		affichageTemps.addActionListener(this);
 		
 		ouvrir = new JButton("Accéder à la scène");
+		ouvrir.setLayout(new BorderLayout());
 		ouvrir.setBounds(AppInterface.windowsSizeX - 275, 75, 225, 50);
 		ouvrir.setFont(new Font("Arial", Font.BOLD, 20));
 		ouvrir.setForeground(Color.BLACK);
 		ouvrir.setBackground(Color.LIGHT_GRAY);
+		ouvrir.setOpaque(true);
 		this.add(ouvrir);
 		ouvrir.addActionListener(this);
 
@@ -137,10 +150,12 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		});
 
 		JScrollPane tableContainer = new JScrollPane(table);
+		table.setLayout(new BorderLayout());
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
 		table.getTableHeader().setForeground(Color.white);
 		table.getTableHeader().setBackground(new Color(51, 153, 255));
 		table.setFont(new Font("Arial", Font.BOLD, 13));
+		table.setOpaque(true);
 		table.getTableHeader().setReorderingAllowed(false);
 		tableContainer.setBounds(50, 200, 700, 400);
 		this.add(tableContainer, BorderLayout.CENTER);

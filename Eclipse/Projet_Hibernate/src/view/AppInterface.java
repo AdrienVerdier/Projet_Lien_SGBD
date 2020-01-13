@@ -25,7 +25,9 @@ public class AppInterface extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel AffichageScenePanel = new AffichageScenePanel(this);
-
+		this.repaint();
+		this.revalidate();
+		
 		this.setVisible(true);
 	}
 
