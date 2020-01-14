@@ -61,7 +61,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		isNocturne = new JCheckBox("Scène nocturne");
 		isNocturne.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 800, 300, 50);
 		isNocturne.setFont(new Font("Arial", Font.BOLD, 20));
-		this.add(dropDownList);
+		this.add(isNocturne);
 
 		textLabel2 = new JLabel("Lieu :", SwingConstants.CENTER);
 		textLabel2.setLayout(null);

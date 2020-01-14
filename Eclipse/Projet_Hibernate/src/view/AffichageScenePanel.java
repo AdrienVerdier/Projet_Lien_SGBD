@@ -49,7 +49,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		this.add(label);
 
 		addButtonI = new JButton("Ajouter Scène Intérieur");
-		addButtonI.setBounds(AppInterface.windowsSizeX - 225, 75, 175, 50);
+		addButtonI.setBounds(50, AppInterface.windowsSizeY - 200, 300, 50);
 		addButtonI.setFont(new Font("Arial", Font.BOLD, 20));
 		addButtonI.setForeground(Color.BLACK);
 		addButtonI.setBackground(Color.LIGHT_GRAY);
@@ -59,7 +59,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		
 		addButtonE = new JButton("Ajouter Scène Extérieur");
 		addButtonE.setLayout(new BorderLayout());
-		addButtonE.setBounds(AppInterface.windowsSizeX - 225, 350, 175, 50);
+		addButtonE.setBounds(50, AppInterface.windowsSizeY - 125, 300, 50);
 		addButtonE.setFont(new Font("Arial", Font.BOLD, 20));
 		addButtonE.setForeground(Color.BLACK);
 		addButtonE.setBackground(Color.LIGHT_GRAY);
@@ -77,7 +77,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		this.add(suppressButton);
 		suppressButton.addActionListener(this);
 		
-		searchButton = new JButton("Rechercher");
+		searchButton = new JButton("Search");
 		searchButton.setLayout(new BorderLayout());
 		searchButton.setFont(new Font("Arial", Font.BOLD, 20));
 		searchButton.setBounds(50, 75, 100, 50);
@@ -109,7 +109,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		
 		affichageTemps = new JButton("Affichage du temps total d'enregistrement");
 		affichageTemps.setLayout(new BorderLayout());
-		affichageTemps.setBounds(AppInterface.windowsSizeX - 350, AppInterface.windowsSizeY - 125, 250, 50);
+		affichageTemps.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 125, 450, 50);
 		affichageTemps.setFont(new Font("Arial", Font.BOLD, 20));
 		affichageTemps.setForeground(Color.BLACK);
 		affichageTemps.setBackground(Color.LIGHT_GRAY);
