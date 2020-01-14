@@ -101,6 +101,7 @@ public class myTableSceneManagement extends AbstractTableModel {
 			idMin = 100000000;
 			listOrd.add(toAdd);
 			listDes.remove(toAdd);
+			iter3 = listDes.iterator();
 		}
 		
 		if (gestionScene.nombreScene() != 0) {
@@ -137,7 +138,7 @@ public class myTableSceneManagement extends AbstractTableModel {
 					}
 				}
 			}
-			else if(isIn(scene) == 1) {
+			else {
 				iter1 = gestionScene.getSceneExterieur().iterator();
 				SceneExterieur sceneExt = new SceneExterieur();
 				
@@ -154,7 +155,12 @@ public class myTableSceneManagement extends AbstractTableModel {
 						case 3:
 							return sceneExt.getCodeLieu().getCodeLieu();
 						case 4:
-							return sceneExt.getNocturne();
+							if(sceneExt.getNocturne() == 1) {
+								return "scène nocturne";
+							}
+							else {
+								return "scene en journée";
+							}
 						case 5:
 							return sceneExt.getCodeLieu().getAdresse();
 						case 6:
@@ -165,7 +171,7 @@ public class myTableSceneManagement extends AbstractTableModel {
 				
 			}
 		}
-		return null;
+		return "bou"; //null;
 	}
 
 	public Class<? extends Object> getColumnClass(int c) {

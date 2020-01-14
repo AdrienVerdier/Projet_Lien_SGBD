@@ -22,11 +22,9 @@ public class AppInterface extends JFrame{
 		this.setResizable(false);
 		this.setSize(windowsSizeX, windowsSizeY);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//la il faudra fermer la co
 
 		JPanel AffichageScenePanel = new AffichageScenePanel(this);
-		this.repaint();
-		this.revalidate();
 		
 		this.setVisible(true);
 	}

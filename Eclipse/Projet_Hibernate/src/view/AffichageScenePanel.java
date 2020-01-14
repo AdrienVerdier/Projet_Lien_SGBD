@@ -132,10 +132,10 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		tablemodel = new myTableSceneManagement(title);
 		table = new JTable(tablemodel);
 		tablemodel.setTable(table);
-
+		
 		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 
-			private static final long serialVersionUID = 2L;
+			private static final long serialVersionUID = 10L;
 
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
@@ -148,17 +148,17 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 				return c;
 			}
 		});
-
+		
 		JScrollPane tableContainer = new JScrollPane(table);
-		table.setLayout(new BorderLayout());
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
-		table.getTableHeader().setForeground(Color.white);
+		table.getTableHeader().setForeground(Color.blue);
 		table.getTableHeader().setBackground(new Color(51, 153, 255));
 		table.setFont(new Font("Arial", Font.BOLD, 13));
-		table.setOpaque(true);
 		table.getTableHeader().setReorderingAllowed(false);
 		tableContainer.setBounds(50, 200, 700, 400);
 		this.add(tableContainer, BorderLayout.CENTER);
+
+		sorter = new TableRowSorter<myTableSceneManagement>(tablemodel);
 	}
 
 	public void actionPerformed(ActionEvent e) {
