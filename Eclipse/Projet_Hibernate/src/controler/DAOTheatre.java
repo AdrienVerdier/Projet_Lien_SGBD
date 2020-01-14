@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import model.Clap;
 import model.Theatre;
 
 public class DAOTheatre {
