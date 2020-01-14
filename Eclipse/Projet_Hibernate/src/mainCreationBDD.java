@@ -13,7 +13,6 @@ public class mainCreationBDD {
 		
 		//creation
 		
-		Duration duree = Duration.ofMinutes(1);
 		//ATTENTION ID SCENE SONT LES MEMES POUR LA BDD DONC METTRE DIFFERENT
 		SceneExterieur SceneExterieur1 = new SceneExterieur(1,"Setup 1 et 2",null,0,null);
 		SceneInterieur SceneInterieur1 = new SceneInterieur(2,"Setup 3",null,null);
@@ -68,11 +67,11 @@ public class mainCreationBDD {
 		//DAOTheatre.supprimerTheatre(Theatre1);
 		
 
-		Clap Clap1 = new Clap(1,duree,1,Setup1);
-		Clap Clap2 = new Clap(2,duree,1,Setup1);
-		Clap Clap3 = new Clap(3,duree,4,Setup2);
-		Clap Clap4 = new Clap(4,duree,2,Setup2);
-		Clap Clap5 = new Clap(5,duree,3,Setup3);
+		Clap Clap1 = new Clap(1,20,1,Setup1);
+		Clap Clap2 = new Clap(2,10,1,Setup1);
+		Clap Clap3 = new Clap(3,200,4,Setup2);
+		Clap Clap4 = new Clap(4,150,2,Setup2);
+		Clap Clap5 = new Clap(5,90,3,Setup3);
 		DAOSetup.ajouterSetupClap(Setup1, Clap1);
 		DAOClap.ajouterClap(Clap1);
 		DAOSetup.ajouterSetupClap(Setup1, Clap2);
