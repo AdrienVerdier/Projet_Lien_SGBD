@@ -37,7 +37,7 @@ public class AjoutSceneInterieurPanel extends JPanel implements ActionListener {
 		label = new JLabel("Ajout d'une scène intérieur");
 		label.setLayout(null);
 		label.setFont(new Font("Arial", Font.BOLD, 20));
-		label.setBounds(25, 0, 250, 40);
+		label.setBounds(25, 0, 350, 40);
 		this.add(label);
 
 		textLabel1 = new JLabel("Description de la scène", SwingConstants.CENTER);
@@ -106,7 +106,7 @@ public class AjoutSceneInterieurPanel extends JPanel implements ActionListener {
 		returnButton.addActionListener(this);
 		
 		nouveauTheatre = new JButton("Nouveau Théatre");
-		nouveauTheatre.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 300, 175, 50);
+		nouveauTheatre.setBounds(AppInterface.windowsSizeX - 275, AppInterface.windowsSizeY - 300, 225, 50);
 		nouveauTheatre.setFont(new Font("Arial", Font.BOLD, 20));
 		nouveauTheatre.setForeground(Color.BLACK);
 		nouveauTheatre.setBackground(Color.LIGHT_GRAY);
@@ -126,7 +126,7 @@ public class AjoutSceneInterieurPanel extends JPanel implements ActionListener {
 
 		if (e.getSource() == applyButton) {
 
-			if (textZone1.getText().equals("") || (textZone2.getText().equals("") && bool == true) || (dropDownList.getSelectedItem().equals("") && bool == false)) {
+			if (textZone1.getText().equals("") || (textZone2.getText().equals("") && bool == true) || (dropDownList.getSelectedItem() == null && bool == false)) {
 				if (textZone1.getText().equals(""))
 					textZone1.setBorder(new LineBorder(Color.red, 1));
 				else
@@ -158,7 +158,7 @@ public class AjoutSceneInterieurPanel extends JPanel implements ActionListener {
 				}
 			}
 			
-			if (!(textZone1.getText().equals("")) && (!(dropDownList.getSelectedItem().equals("")) && bool == false)) {
+			if (!(textZone1.getText().equals("")) && (!(dropDownList.getSelectedItem() == null) && bool == false)) {
 				validateLabel.setText("La scène a été ajouté");
 				validateLabel.setForeground(Color.green.darker());
 

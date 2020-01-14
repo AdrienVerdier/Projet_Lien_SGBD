@@ -82,7 +82,7 @@ public class DAOClap {
 		String queryString = "select c from Clap c";
 		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
-		int max = 0;
+		int max = 1;
 		for (int i = 0; i < results.size(); i++) {
 			Clap clap = (Clap) results.get(i);
 			if(clap.getCodeClap() >= max)

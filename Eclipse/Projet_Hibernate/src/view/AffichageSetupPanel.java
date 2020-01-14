@@ -60,7 +60,7 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		label.setBounds(25, 0, 250, 40);
 		this.add(label);
 
-		searchButton = new JButton("Rechercher");
+		searchButton = new JButton("Search");
 		searchButton.setLayout(new BorderLayout());
 		searchButton.setFont(new Font("Arial", Font.BOLD, 20));
 		searchButton.setBounds(50, 75, 100, 50);
@@ -78,13 +78,13 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		textZone1.setHorizontalAlignment(JTextField.CENTER);
 
 		dropDownList = new JComboBox<String>();
-		dropDownList.setBounds(450, 75, 100, 50);
+		dropDownList.setBounds(450, 75, 150, 50);
 		dropDownList.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(dropDownList);
 		dropDownList.addItem("codeSetup");
 
 		addButton = new JButton("Ajouter");
-		addButton.setBounds(AppInterface.windowsSizeX - 225, 75, 175, 50);
+		addButton.setBounds(AppInterface.windowsSizeX - 225, 150, 175, 50);
 		addButton.setFont(new Font("Arial", Font.BOLD, 20));
 		addButton.setForeground(Color.BLACK);
 		addButton.setBackground(Color.LIGHT_GRAY);
@@ -98,7 +98,7 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		tablemodel.setTable(table);
 		JScrollPane tableContainer = new JScrollPane(table);
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
-		table.getTableHeader().setForeground(Color.white);
+		table.getTableHeader().setForeground(Color.blue);
 		table.getTableHeader().setBackground(new Color(51, 153, 255));
 		table.setFont(new Font("Arial", Font.BOLD, 13));
 		table.setAutoCreateRowSorter(true);
@@ -117,7 +117,7 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		suppressButton.addActionListener(this);
 
 		returnButton = new JButton("RETOUR");
-		returnButton.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 125, 175, 50);
+		returnButton.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 250, 175, 50);
 		returnButton.setFont(new Font("Arial", Font.BOLD, 20));
 		returnButton.setForeground(Color.BLACK);
 		returnButton.setBackground(Color.LIGHT_GRAY);
@@ -125,20 +125,12 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		returnButton.addActionListener(this);
 		
 		affichageTemps = new JButton("Affichage du temps d'enregistrement");
-		affichageTemps.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 100, 175, 50);
+		affichageTemps.setBounds(AppInterface.windowsSizeX - 450, AppInterface.windowsSizeY - 125, 400, 50);
 		affichageTemps.setFont(new Font("Arial", Font.BOLD, 20));
 		affichageTemps.setForeground(Color.BLACK);
 		affichageTemps.setBackground(Color.LIGHT_GRAY);
 		this.add(affichageTemps);
 		affichageTemps.addActionListener(this);
-		
-		numeroBobine = new JButton("Affichage du temps d'enregistrement");
-		numeroBobine.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 100, 175, 50);
-		numeroBobine.setFont(new Font("Arial", Font.BOLD, 20));
-		numeroBobine.setForeground(Color.BLACK);
-		numeroBobine.setBackground(Color.LIGHT_GRAY);
-		this.add(numeroBobine);
-		numeroBobine.addActionListener(this);
 		
 		ouvrir = new JButton("Accéder à la scène");
 		ouvrir.setBounds(AppInterface.windowsSizeX - 275, 75, 225, 50);
@@ -194,12 +186,8 @@ public class AffichageSetupPanel extends JPanel implements ActionListener {
 		
 		if (e.getSource() == affichageTemps) {
 			int retour = JOptionPane.showConfirmDialog(this,
-					"Le temps total enregistré pour cette scène est : " + (gestionSetup.getTimeScene(codeScene)%60) + "Minute" + (gestionSetup.getTimeScene(codeScene) - ((gestionSetup.getTimeScene(codeScene)%60)*60)) +"Seconds",
+					"Le temps total enregistré pour cette scène est : " + ((gestionSetup.getTimeScene(codeScene) - gestionSetup.getTimeScene(codeScene)%60)/60) + "Minute" + (gestionSetup.getTimeScene(codeScene)%60) +"Seconds",
 					"CONFIRM", JOptionPane.YES_OPTION);
-		}
-		
-		if (e.getSource() == numeroBobine) {
-			ArrayList<Integer> listeBobine = gestionSetup.getBobine(codeScene);
 		}
 		
 		if (e.getSource() == ouvrir) {

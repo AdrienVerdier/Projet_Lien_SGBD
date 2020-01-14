@@ -113,7 +113,7 @@ public class DAOSceneInterieur {
 		String queryString = "select s from Scene s";
 		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
-		int max = 0;
+		int max = 1;
 		for (int i = 0; i < results.size(); i++) {
 			Scene Scene = (Scene) results.get(i);
 			if(Scene.getCodeScene() >= max)

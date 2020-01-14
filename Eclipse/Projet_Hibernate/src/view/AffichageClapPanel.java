@@ -62,7 +62,7 @@ public class AffichageClapPanel extends JPanel implements ActionListener {
 		label.setBounds(25, 0, 250, 40);
 		this.add(label);
 
-		searchButton = new JButton("Rechercher");
+		searchButton = new JButton("Search");
 		searchButton.setLayout(new BorderLayout());
 		searchButton.setFont(new Font("Arial", Font.BOLD, 20));
 		searchButton.setBounds(50, 75, 100, 50);
@@ -80,7 +80,7 @@ public class AffichageClapPanel extends JPanel implements ActionListener {
 		textZone1.setHorizontalAlignment(JTextField.CENTER);
 
 		dropDownList = new JComboBox<String>();
-		dropDownList.setBounds(450, 75, 100, 50);
+		dropDownList.setBounds(450, 75, 150, 50);
 		dropDownList.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(dropDownList);
 		dropDownList.addItem("codeClap");
@@ -101,7 +101,7 @@ public class AffichageClapPanel extends JPanel implements ActionListener {
 		tablemodel.setTable(table);
 		JScrollPane tableContainer = new JScrollPane(table);
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
-		table.getTableHeader().setForeground(Color.white);
+		table.getTableHeader().setForeground(Color.blue);
 		table.getTableHeader().setBackground(new Color(51, 153, 255));
 		table.setFont(new Font("Arial", Font.BOLD, 13));
 		table.setAutoCreateRowSorter(true);

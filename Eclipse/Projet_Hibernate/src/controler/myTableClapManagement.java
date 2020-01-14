@@ -59,7 +59,7 @@ public class myTableClapManagement extends AbstractTableModel {
 			case 2:
 				return clapSelected.getCodeBobine();
 			case 3:
-				return clapSelected.getCodeSetup();
+				return clapSelected.getCodeSetup().getCodeSetup();
 			}
 		}
 		return null;

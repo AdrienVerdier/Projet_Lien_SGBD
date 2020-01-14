@@ -100,7 +100,7 @@ public class DAOSetup {
 		String queryString = "select s from Setup s";
 		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
-		int max = 0;
+		int max = 1;
 		for (int i = 0; i < results.size(); i++) {
 			Setup Setup = (Setup) results.get(i);
 			if(Setup.getCodeSetup() >= max)

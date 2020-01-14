@@ -17,24 +17,17 @@ public class gestionScene {
 		Iterator<SceneExterieur> iterator = gestionScene.getSceneExterieur().iterator();
 		Iterator<SceneInterieur> iterator2 = gestionScene.getSceneInterieur().iterator();
 		double dureeTotale = 0;
-		double toadd = 0;
 		
 		while(iterator.hasNext()) {
 			SceneExterieur scene = iterator.next();
 			
-			toadd = 0;
-			toadd += gestionSetup.getTimeScene(scene.getCodeScene());
-			
-			dureeTotale += toadd;
+			dureeTotale = gestionSetup.getTimeScene(scene.getCodeScene());
 		}
 		
 		while(iterator2.hasNext()) {
 			SceneInterieur scene2 = iterator2.next();
 			
-			toadd = 0;
-			toadd += gestionSetup.getTimeScene(scene2.getCodeScene());
-			
-			dureeTotale += toadd;
+			dureeTotale += gestionSetup.getTimeScene(scene2.getCodeScene());
 		}
 		
 		return dureeTotale;

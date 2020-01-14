@@ -178,7 +178,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		
 		if (e.getSource() == affichageTemps) {
 			int retour = JOptionPane.showConfirmDialog(this,
-					"Le temps total enregistré pour le film est : " + (gestionScene.getTimeFilm()%60) + "Minutes" + (gestionScene.getTimeFilm() - ((gestionScene.getTimeFilm()%60)*60))+ "Secondes",
+					"Le temps total enregistré pour le film est : " + ((gestionScene.getTimeFilm() - gestionScene.getTimeFilm()%60)/60) + "Minutes" + (gestionScene.getTimeFilm()%60) + "Secondes",
 					"CONFIRM", JOptionPane.YES_OPTION);
 		}
 

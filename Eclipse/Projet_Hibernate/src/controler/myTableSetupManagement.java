@@ -57,7 +57,7 @@ public class myTableSetupManagement extends AbstractTableModel {
 			case 1:
 				return setupSelected.getParametre();
 			case 2:
-				return setupSelected.getCodeScene();
+				return setupSelected.getCodeScene().getCodeScene();
 			}
 		}
 		return null;

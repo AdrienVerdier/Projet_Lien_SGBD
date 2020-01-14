@@ -14,7 +14,6 @@ public class gestionSetup {
 	public static double getTimeScene(int codeScene) {
 		Iterator<Setup> iterator = gestionSetup.getSetup(codeScene).iterator();
 		double dureeTotale = 0;
-		double toadd = 0;
 		
 		while(iterator.hasNext()) {
 			Setup setup = iterator.next();
@@ -23,9 +22,7 @@ public class gestionSetup {
 			while(iter.hasNext()) {
 				Clap clap = iter.next();
 				
-				toadd = 0;
-				toadd = clap.getDuree();
-				dureeTotale += toadd;
+				dureeTotale += clap.getDuree();
 			}
 		}
 		

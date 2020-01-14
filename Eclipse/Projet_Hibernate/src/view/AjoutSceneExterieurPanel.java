@@ -36,10 +36,10 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		this.setLayout(null);
 		this.frame.setContentPane(this);
 
-		label = new JLabel("Ajout d'une scène iextèrieur");
+		label = new JLabel("Ajout d'une scène extèrieur");
 		label.setLayout(null);
 		label.setFont(new Font("Arial", Font.BOLD, 20));
-		label.setBounds(25, 0, 250, 40);
+		label.setBounds(25, 0, 300, 40);
 		this.add(label);
 
 		textLabel1 = new JLabel("Description de la scène", SwingConstants.CENTER);
@@ -59,21 +59,21 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		textZone1.setHorizontalAlignment(JTextField.CENTER);
 		
 		isNocturne = new JCheckBox("Scène nocturne");
-		isNocturne.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 800, 300, 50);
+		isNocturne.setBounds(AppInterface.windowsSizeX - 800, AppInterface.windowsSizeY - 650, 300, 50);
 		isNocturne.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(isNocturne);
 
 		textLabel2 = new JLabel("Lieu :", SwingConstants.CENTER);
 		textLabel2.setLayout(null);
 		textLabel2.setFont(new Font("Arial", Font.BOLD, 20));
-		textLabel2.setBounds(AppInterface.windowsSizeX - 800, AppInterface.windowsSizeY - 650, 300, 50);
+		textLabel2.setBounds(AppInterface.windowsSizeX - 800, AppInterface.windowsSizeY - 550, 300, 50);
 		textLabel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		textLabel2.setBackground(Color.LIGHT_GRAY);
 		textLabel2.setOpaque(true);
 		this.add(textLabel2);
 		
 		dropDownList = new JComboBox<String>();
-		dropDownList.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 650, 300, 50);
+		dropDownList.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 550, 300, 50);
 		dropDownList.setFont(new Font("Arial", Font.BOLD, 20));
 		this.add(dropDownList);
 		dropDownList = gestionScene.RemplirListeLieu(dropDownList);
@@ -81,7 +81,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		textLabel3 = new JLabel("adresse", SwingConstants.CENTER);
 		textLabel3.setLayout(null);
 		textLabel3.setFont(new Font("Arial", Font.BOLD, 20));
-		textLabel3.setBounds(AppInterface.windowsSizeX - 800, AppInterface.windowsSizeY - 550, 300, 50);
+		textLabel3.setBounds(AppInterface.windowsSizeX - 800, AppInterface.windowsSizeY - 450, 300, 50);
 		textLabel3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		textLabel3.setBackground(Color.LIGHT_GRAY);
 		textLabel3.setOpaque(true);
@@ -91,7 +91,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		textZone2 = new JTextField();
 		textZone2.setFont(new Font("Arial", Font.BOLD, 20));
 		textZone2.setLayout(null);
-		textZone2.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 550, 300, 50);
+		textZone2.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 450, 300, 50);
 		textZone2.setHorizontalAlignment(JTextField.CENTER);
 		this.add(textZone2);
 		textZone2.setVisible(bool);
@@ -99,7 +99,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		textLabel4 = new JLabel("description", SwingConstants.CENTER);
 		textLabel4.setLayout(null);
 		textLabel4.setFont(new Font("Arial", Font.BOLD, 20));
-		textLabel4.setBounds(AppInterface.windowsSizeX - 400, AppInterface.windowsSizeY - 550, 300, 50);
+		textLabel4.setBounds(AppInterface.windowsSizeX - 800, AppInterface.windowsSizeY - 350, 300, 50);
 		textLabel4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		textLabel4.setBackground(Color.LIGHT_GRAY);
 		textLabel4.setOpaque(true);
@@ -109,7 +109,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		textZone3 = new JTextField();
 		textZone3.setFont(new Font("Arial", Font.BOLD, 20));
 		textZone3.setLayout(null);
-		textZone3.setBounds(AppInterface.windowsSizeX - 300, AppInterface.windowsSizeY - 550, 300, 50);
+		textZone3.setBounds(AppInterface.windowsSizeX - 500, AppInterface.windowsSizeY - 350, 300, 50);
 		textZone3.setHorizontalAlignment(JTextField.CENTER);
 		this.add(textZone3);
 		textZone3.setVisible(bool);
@@ -131,7 +131,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 		returnButton.addActionListener(this);
 		
 		nouveauLieu = new JButton("Nouveau Lieu");
-		nouveauLieu.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 300, 175, 50);
+		nouveauLieu.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 250, 175, 50);
 		nouveauLieu.setFont(new Font("Arial", Font.BOLD, 20));
 		nouveauLieu.setForeground(Color.BLACK);
 		nouveauLieu.setBackground(Color.LIGHT_GRAY);
@@ -151,7 +151,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 
 		if (e.getSource() == applyButton) {
 
-			if (textZone1.getText().equals("") || ((textZone2.getText().equals("") && bool == true) || (textZone3.getText().equals("") && bool == true)) || (dropDownList.getSelectedItem().equals("") && bool == false)) {
+			if (textZone1.getText().equals("") || ((textZone2.getText().equals("") && bool == true) || (textZone3.getText().equals("") && bool == true)) || (dropDownList.getSelectedItem() == null && bool == false)) {
 				if (textZone1.getText().equals(""))
 					textZone1.setBorder(new LineBorder(Color.red, 1));
 				else
@@ -188,7 +188,7 @@ public class AjoutSceneExterieurPanel extends JPanel implements ActionListener {
 				}
 			}
 			
-			if (!(textZone1.getText().equals("")) && (!(dropDownList.getSelectedItem().equals("")) && bool == false)) {
+			if (!(textZone1.getText().equals("")) && (!(dropDownList.getSelectedItem() == null) && bool == false)) {
 				validateLabel.setText("La scène a été ajouté");
 				validateLabel.setForeground(Color.green.darker());
 
