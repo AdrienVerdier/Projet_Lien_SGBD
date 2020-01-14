@@ -17,11 +17,9 @@ public class DAOSceneInterieur {
 	 * @param SceneInterieur la SceneInterieur que l'on veut ajouter à la base de données
 	 */
 	public static void ajouterSceneInterieur(SceneInterieur SceneInterieur) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		em.persist(SceneInterieur);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Connexion.getEM().persist(SceneInterieur);
+		Connexion.getEM().getTransaction().commit();
 	}
 	
 	/**
@@ -29,9 +27,8 @@ public class DAOSceneInterieur {
 	 * @param SceneInterieur la SceneInterieur à laquelle on veut ajouter le Setup
 	 * @param Setup le Setup que l'on veut ajouter
 	 */
-	public static void ajouterSceneInterieurSetup(SceneInterieur SceneInterieur,Setup Setup) {
-		EntityManager em = Connexion.ouvrirconnexion();		
-		em.getTransaction().begin();
+	public static void ajouterSceneInterieurSetup(SceneInterieur SceneInterieur,Setup Setup) {	
+		Connexion.getEM().getTransaction().begin();
 		List<Setup> listSetup;
 		listSetup = SceneInterieur.getListSetup();
 		if(listSetup == null)
@@ -40,8 +37,7 @@ public class DAOSceneInterieur {
 		}
 		listSetup.add(Setup);
 		SceneInterieur.setListSetup(listSetup);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -49,12 +45,10 @@ public class DAOSceneInterieur {
 	 * @param SceneInterieur la SceneInterieur que l'on veut supprimer à la base de données
 	 */
 	public static void supprimerSceneInterieur(SceneInterieur SceneInterieur) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		SceneInterieur SceneInterieur2 = em.find(SceneInterieur.class, SceneInterieur.getCodeScene());
-		em.remove(SceneInterieur2);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		SceneInterieur SceneInterieur2 = Connexion.getEM().find(SceneInterieur.class, SceneInterieur.getCodeScene());
+		Connexion.getEM().remove(SceneInterieur2);
+		Connexion.getEM().getTransaction().commit();
 	}
 	/**
 	 * Cette méthode recherche une SceneInterieur de la base de données à partir de son Id
@@ -62,11 +56,9 @@ public class DAOSceneInterieur {
 	 * @return l'objet SceneInterieur recherché 
 	 */
 	public static SceneInterieur rechercheSceneInterieurById(int IDSceneInterieur) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		SceneInterieur SceneInterieur = em.find(SceneInterieur.class, IDSceneInterieur);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		SceneInterieur SceneInterieur = Connexion.getEM().find(SceneInterieur.class, IDSceneInterieur);
+		Connexion.getEM().getTransaction().commit();
 		return SceneInterieur;
 	}
 	/**
@@ -76,14 +68,12 @@ public class DAOSceneInterieur {
 	 */
 
 	public static void modifierSceneInterieur(int IDSceneInterieur, SceneInterieur SceneInterieur) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		SceneInterieur NouveauSceneInterieur = em.find(SceneInterieur.class, IDSceneInterieur);
+		Connexion.getEM().getTransaction().begin();
+		SceneInterieur NouveauSceneInterieur = Connexion.getEM().find(SceneInterieur.class, IDSceneInterieur);
 		NouveauSceneInterieur.setDescription(SceneInterieur.getDescription());
 		NouveauSceneInterieur.setListSetup(SceneInterieur.getListSetup());
 		NouveauSceneInterieur.setCodeTheatre(SceneInterieur.getCodeTheatre());
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 	}
 	/**
 	 * Cette méthode modifie le Theatre d'une IDSceneInterieur
@@ -91,12 +81,10 @@ public class DAOSceneInterieur {
 	 * @param Theatre le nouveau Theatre
 	 */
 	public static void modifierSceneInterieurTheatre(int IDSceneInterieur, Theatre Theatre) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		SceneInterieur NouveauSceneInterieur = em.find(SceneInterieur.class, IDSceneInterieur);
+		Connexion.getEM().getTransaction().begin();
+		SceneInterieur NouveauSceneInterieur = Connexion.getEM().find(SceneInterieur.class, IDSceneInterieur);
 		NouveauSceneInterieur.setCodeTheatre(Theatre);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -104,18 +92,16 @@ public class DAOSceneInterieur {
 	 * @return une liste de tous les objets SceneInterieur de la base de données
 	 */
 	public static ArrayList<SceneInterieur> returnAllSceneInterieur() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		ArrayList<SceneInterieur> resultat = new ArrayList<SceneInterieur>();
 		String queryString = "select s from SceneInterieur s";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results =  query.getResultList();
 		for (int i = 0; i < results.size(); i++) {
 			SceneInterieur SceneInterieur = (SceneInterieur) results.get(i);
 			resultat.add(SceneInterieur);
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return resultat;
 	};
 	/**
@@ -123,10 +109,9 @@ public class DAOSceneInterieur {
 	 * @return le numéro d'Id du prochain SceneInterieur
 	 */
 	public static int returnMaxIDSceneInterieur() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		String queryString = "select s from Scene s";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
 		int max = 0;
 		for (int i = 0; i < results.size(); i++) {
@@ -136,8 +121,7 @@ public class DAOSceneInterieur {
 				max = Scene.getCodeScene()+1;
 			}
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return max;
 	};
 }

@@ -15,11 +15,9 @@ public class DAOClap {
 	 * @param Clap le clap que l'on veut ajouter à la base de données
 	 */
 	public static void ajouterClap(Clap Clap) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		em.persist(Clap);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Connexion.getEM().persist(Clap);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -27,12 +25,10 @@ public class DAOClap {
 	 * @param Clap le clap que l'on veut supprimer à la base de données
 	 */
 	public static void supprimerClap(Clap Clap) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Clap Clap2 = em.find(Clap.class, Clap.getCodeClap());
-		em.remove(Clap2);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Clap Clap2 = Connexion.getEM().find(Clap.class, Clap.getCodeClap());
+		Connexion.getEM().remove(Clap2);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -41,11 +37,9 @@ public class DAOClap {
 	 * @return l'objet clap recherché 
 	 */
 	public static Clap rechercheClapById(int IDClap) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Clap Clap = em.find(Clap.class, IDClap);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Clap Clap = Connexion.getEM().find(Clap.class, IDClap);
+		Connexion.getEM().getTransaction().commit();
 		return Clap;
 	}
 
@@ -55,13 +49,11 @@ public class DAOClap {
 	 * @param Clap le clap qui contient les nouvelles données du Clap
 	 */
 	public static void modifierCLap(int IDClap, Clap Clap) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Clap NouveauClap = em.find(Clap.class, IDClap);
+		Connexion.getEM().getTransaction().begin();
+		Clap NouveauClap = Connexion.getEM().find(Clap.class, IDClap);
 		NouveauClap.setCodeBobine(Clap.getCodeBobine());
 		NouveauClap.setDuree(Clap.getDuree());
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -69,18 +61,16 @@ public class DAOClap {
 	 * @return une liste de tous les objets Clap de la base de données
 	 */
 	public static ArrayList<Clap> returnAllClap() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		ArrayList<Clap> resultat = new ArrayList<Clap>();
 		String queryString = "select c from Clap c";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
 		for (int i = 0; i < results.size(); i++) {
 			Clap clap = (Clap) results.get(i);
 			resultat.add(clap);
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return resultat;
 	};
 	
@@ -89,10 +79,9 @@ public class DAOClap {
 	 * @return le numéro d'Id du prochain Clap
 	 */
 	public static int returnMaxIDClap() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		String queryString = "select c from Clap c";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
 		int max = 0;
 		for (int i = 0; i < results.size(); i++) {
@@ -102,8 +91,7 @@ public class DAOClap {
 				max = clap.getCodeClap()+1;
 			}
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return max;
 	};
 }

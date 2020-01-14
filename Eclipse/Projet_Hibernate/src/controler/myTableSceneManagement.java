@@ -133,7 +133,7 @@ public class myTableSceneManagement extends AbstractTableModel {
 						case 5:
 							return "";
 						case 6:
-							return "prout";//sceneInt.getCodeTheatre().getDescription();
+							return sceneInt.getCodeTheatre().getDescription();
 						}
 					}
 				}
@@ -162,9 +162,9 @@ public class myTableSceneManagement extends AbstractTableModel {
 								return "scene en journée";
 							}
 						case 5:
-							return "ok.";//sceneExt.getCodeLieu().getAdresse();
+							return sceneExt.getCodeLieu().getAdresse();
 						case 6:
-							return "oui";//sceneExt.getCodeLieu().getDescription();
+							return sceneExt.getCodeLieu().getDescription();
 						}
 					}
 				}

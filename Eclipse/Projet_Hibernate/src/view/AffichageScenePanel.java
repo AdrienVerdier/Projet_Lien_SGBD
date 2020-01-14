@@ -69,7 +69,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 
 		suppressButton = new JButton("Supprimer");
 		suppressButton.setLayout(new BorderLayout());
-		suppressButton.setBounds(AppInterface.windowsSizeX - 225, 225, 175, 50);
+		suppressButton.setBounds(AppInterface.windowsSizeX - 225, 175, 175, 50);
 		suppressButton.setFont(new Font("Arial", Font.BOLD, 20));
 		suppressButton.setForeground(Color.BLACK);
 		suppressButton.setBackground(Color.LIGHT_GRAY);
@@ -109,7 +109,7 @@ public class AffichageScenePanel extends JPanel implements ActionListener{
 		
 		affichageTemps = new JButton("Affichage du temps total d'enregistrement");
 		affichageTemps.setLayout(new BorderLayout());
-		affichageTemps.setBounds(AppInterface.windowsSizeX - 225, AppInterface.windowsSizeY - 125, 175, 50);
+		affichageTemps.setBounds(AppInterface.windowsSizeX - 350, AppInterface.windowsSizeY - 125, 250, 50);
 		affichageTemps.setFont(new Font("Arial", Font.BOLD, 20));
 		affichageTemps.setForeground(Color.BLACK);
 		affichageTemps.setBackground(Color.LIGHT_GRAY);

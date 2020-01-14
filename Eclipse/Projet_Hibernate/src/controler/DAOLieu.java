@@ -14,23 +14,19 @@ public class DAOLieu {
 	 * @param Lieu le Lieu que l'on veut ajouter à la base de données
 	 */
 	public static void ajouterLieu(Lieu Lieu) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		em.persist(Lieu);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Connexion.getEM().persist(Lieu);
+		Connexion.getEM().getTransaction().commit();
 	}
 	/**
 	 * Cette méthode supprime un Lieu à la base de données
 	 * @param Lieu le Lieu que l'on veut supprimer à la base de données
 	 */
 	public static void supprimerLieu(Lieu Lieu) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Lieu Lieu2 = em.find(Lieu.class, Lieu.getCodeLieu());
-		em.remove(Lieu2);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Lieu Lieu2 = Connexion.getEM().find(Lieu.class, Lieu.getCodeLieu());
+		Connexion.getEM().remove(Lieu2);
+		Connexion.getEM().getTransaction().commit();
 	}
 	/**
 	 * Cette méthode recherche un Lieu de la base de données à partir de son Id
@@ -38,11 +34,9 @@ public class DAOLieu {
 	 * @return l'objet Lieu recherché 
 	 */
 	public static Lieu rechercheLieuById(int IDLieu) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Lieu Lieu = em.find(Lieu.class, IDLieu);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Lieu Lieu = Connexion.getEM().find(Lieu.class, IDLieu);
+		Connexion.getEM().getTransaction().commit();
 		return Lieu;
 	}
 	/**
@@ -51,31 +45,27 @@ public class DAOLieu {
 	 * @param Lieu le Lieu qui contient les nouvelles données du Lieu
 	 */
 	public static void modifierLieu(int IDLieu, Lieu Lieu) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Lieu NouveauLieu = em.find(Lieu.class, IDLieu);
+		Connexion.getEM().getTransaction().begin();
+		Lieu NouveauLieu = Connexion.getEM().find(Lieu.class, IDLieu);
 		NouveauLieu.setAdresse(Lieu.getAdresse());
 		NouveauLieu.setDescription(Lieu.getDescription());
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 	}
 	/**
 	 * Cette méthode renvoie tous les objets Lieu de la base de données
 	 * @return une liste de tous les objets Lieu de la base de données
 	 */
 	public static ArrayList<Lieu> returnAllLieu() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		ArrayList<Lieu> resultat = new ArrayList<Lieu>();
 		String queryString = "select l from Lieu l";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
 		for (int i = 0; i < results.size(); i++) {
 			Lieu Lieu = (Lieu) results.get(i);
 			resultat.add(Lieu);
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return resultat;
 	};
 	/**
@@ -83,10 +73,9 @@ public class DAOLieu {
 	 * @return le numéro d'Id du prochain Lieu
 	 */
 	public static int returnMaxIDLieu() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		String queryString = "select l from Lieu l";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
 		int max = 0;
 		for (int i = 0; i < results.size(); i++) {
@@ -96,8 +85,7 @@ public class DAOLieu {
 				max = Lieu.getCodeLieu()+1;
 			}
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return max;
 	};
 }

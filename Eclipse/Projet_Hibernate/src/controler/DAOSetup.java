@@ -15,11 +15,9 @@ public class DAOSetup {
 	 * @param Setup le Setup que l'on veut ajouter à la base de données
 	 */
 	public static void ajouterSetup(Setup Setup) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		em.persist(Setup);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Connexion.getEM().persist(Setup);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -27,9 +25,8 @@ public class DAOSetup {
 	 * @param Setup le Setup auquel on veut ajouter le Clap
 	 * @param Clap le Clap que l'on veut ajouter
 	 */
-	public static void ajouterSetupClap(Setup Setup, Clap clap) {
-		EntityManager em = Connexion.ouvrirconnexion();		
-		em.getTransaction().begin();
+	public static void ajouterSetupClap(Setup Setup, Clap clap) {	
+		Connexion.getEM().getTransaction().begin();
 		List<Clap> listClap;
 		listClap = Setup.getListClap();
 		if(listClap == null)
@@ -38,8 +35,7 @@ public class DAOSetup {
 		}
 		listClap.add(clap);
 		Setup.setListClap(listClap);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -47,12 +43,10 @@ public class DAOSetup {
 	 * @param Setup le Setup que l'on veut supprimer à la base de données
 	 */
 	public static void supprimerSetup(Setup Setup) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Setup Setup2 = em.find(Setup.class, Setup.getCodeSetup());
-		em.remove(Setup2);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Setup Setup2 = Connexion.getEM().find(Setup.class, Setup.getCodeSetup());
+		Connexion.getEM().remove(Setup2);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -61,11 +55,9 @@ public class DAOSetup {
 	 * @return l'objet Setup recherché 
 	 */
 	public static Setup rechercheSetupById(int IDSetup) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Setup Setup = em.find(Setup.class, IDSetup);
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().begin();
+		Setup Setup = Connexion.getEM().find(Setup.class, IDSetup);
+		Connexion.getEM().getTransaction().commit();
 		return Setup;
 	}
 
@@ -75,13 +67,11 @@ public class DAOSetup {
 	 * @param Setup le Setup qui contient les nouvelles données du Setup
 	 */
 	public static void modifierSetup(int IDSetup, Setup Setup) {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
-		Setup NouveauSetup = em.find(Setup.class, IDSetup);
+		Connexion.getEM().getTransaction().begin();
+		Setup NouveauSetup = Connexion.getEM().find(Setup.class, IDSetup);
 		NouveauSetup.setListClap(Setup.getListClap());
 		NouveauSetup.setParametre(Setup.getParametre());
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 	}
 
 	/**
@@ -89,18 +79,16 @@ public class DAOSetup {
 	 * @return une liste de tous les objets Setup de la base de données
 	 */
 	public static ArrayList<Setup> returnAllSetup() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		ArrayList<Setup> resultat = new ArrayList<Setup>();
 		String queryString = "select s from Setup s";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results =  query.getResultList();
 		for (int i = 0; i < results.size(); i++) {
 			Setup Setup = (Setup) results.get(i);
 			resultat.add(Setup);
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return resultat;
 	};
 	/**
@@ -108,10 +96,9 @@ public class DAOSetup {
 	 * @return le numéro d'Id du prochain Setup
 	 */
 	public static int returnMaxIDSetup() {
-		EntityManager em = Connexion.ouvrirconnexion();
-		em.getTransaction().begin();
+		Connexion.getEM().getTransaction().begin();
 		String queryString = "select s from Setup s";
-		Query query = em.createQuery(queryString);
+		Query query = Connexion.getEM().createQuery(queryString);
 		List results = query.getResultList();
 		int max = 0;
 		for (int i = 0; i < results.size(); i++) {
@@ -121,8 +108,7 @@ public class DAOSetup {
 				max = Setup.getCodeSetup()+1;
 			}
 		}
-		em.getTransaction().commit();
-		Connexion.fermerconnexion(em);
+		Connexion.getEM().getTransaction().commit();
 		return max;
 	};
 }
