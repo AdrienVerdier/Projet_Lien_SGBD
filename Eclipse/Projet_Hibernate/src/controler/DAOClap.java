@@ -8,7 +8,6 @@ import javax.persistence.Query;
 import model.Clap;
 
 public class DAOClap {
-	//n'oublie pas de faire le lien entre la liste de Clap de la classe Setup voir tp2 Hibernate
 
 	/**
 	 * Cette méthode ajoute un clap à la base de données
