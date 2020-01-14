@@ -89,6 +89,7 @@ public class mainCreationBDD {
 		DAOLieu.supprimerLieu(Lieu1);
 		DAOSceneExterieur.modifierSceneExterieurLieu(1, null);
 		DAOSceneExterieur.modifierSceneExterieurLieu(3, null);
-		
+	
+		Connexion.fermerconnexion();
 	}
 }

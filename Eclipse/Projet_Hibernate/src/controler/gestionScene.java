@@ -13,33 +13,31 @@ import model.SceneInterieur;
 
 public class gestionScene {
 
-	public static int getTimeFilm() {
+	public static double getTimeFilm() {
 		Iterator<SceneExterieur> iterator = gestionScene.getSceneExterieur().iterator();
 		Iterator<SceneInterieur> iterator2 = gestionScene.getSceneInterieur().iterator();
-		Duration dureeTotale = Duration.ZERO;
-		Duration toadd = Duration.ZERO;
+		double dureeTotale = 0;
+		double toadd = 0;
 		
 		while(iterator.hasNext()) {
 			SceneExterieur scene = iterator.next();
 			
-			toadd = Duration.ZERO;
-			toadd.plusMinutes(gestionSetup.getTimeScene(scene.getCodeScene())%60);
-			toadd.plusSeconds(gestionSetup.getTimeScene(scene.getCodeScene()) - ((gestionSetup.getTimeScene(scene.getCodeScene())%60)*60));
+			toadd = 0;
+			toadd += gestionSetup.getTimeScene(scene.getCodeScene());
 			
-			dureeTotale.plus(toadd);
+			dureeTotale += toadd;
 		}
 		
 		while(iterator2.hasNext()) {
 			SceneInterieur scene2 = iterator2.next();
 			
-			toadd = Duration.ZERO;
-			toadd.plusMinutes(gestionSetup.getTimeScene(scene2.getCodeScene())%60);
-			toadd.plusSeconds(gestionSetup.getTimeScene(scene2.getCodeScene()) - ((gestionSetup.getTimeScene(scene2.getCodeScene())%60)*60));
+			toadd = 0;
+			toadd += gestionSetup.getTimeScene(scene2.getCodeScene());
 			
-			dureeTotale.plus(toadd);
+			dureeTotale += toadd;
 		}
 		
-		return (int)dureeTotale.toMinutes();
+		return dureeTotale;
 	}
 	
 	public static JComboBox<String> RemplirListeTheatre (JComboBox<String> dropDownList){

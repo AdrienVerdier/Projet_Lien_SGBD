@@ -10,9 +10,9 @@ import model.Setup;
 public class gestionClap {
 
 	public static void ajouterClap(int Minute, int seconds, String codeBobine, int codeSetup) {
-		Duration duree = Duration.ZERO;
-		duree.plusMinutes(Minute);
-		duree.plusSeconds(seconds);
+		double duree = 0;
+		duree += (Minute * 60);
+		duree += seconds;
 		
 		Setup setup = DAOSetup.rechercheSetupById(codeSetup);
 		int bobi = Integer.parseInt(codeBobine);

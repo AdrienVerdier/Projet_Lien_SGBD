@@ -11,10 +11,10 @@ import model.SceneInterieur;
 
 public class gestionSetup {
 	
-	public static int getTimeScene(int codeScene) {
+	public static double getTimeScene(int codeScene) {
 		Iterator<Setup> iterator = gestionSetup.getSetup(codeScene).iterator();
-		Duration dureeTotale = Duration.ZERO;
-		Duration toadd = Duration.ZERO;
+		double dureeTotale = 0;
+		double toadd = 0;
 		
 		while(iterator.hasNext()) {
 			Setup setup = iterator.next();
@@ -23,13 +23,13 @@ public class gestionSetup {
 			while(iter.hasNext()) {
 				Clap clap = iter.next();
 				
-				toadd = Duration.ZERO;
+				toadd = 0;
 				toadd = clap.getDuree();
-				dureeTotale.plus(toadd);
+				dureeTotale += toadd;
 			}
 		}
 		
-		return (int)dureeTotale.toMinutes();
+		return dureeTotale;
 	}
 	
 	public static ArrayList<Integer> getBobine (int codeScene){

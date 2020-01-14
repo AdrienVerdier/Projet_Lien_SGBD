@@ -10,6 +10,7 @@ public class Connexion {
 	public static void init()
 	{
 		emf = Persistence.createEntityManagerFactory("creation");
+		em = emf.createEntityManager();
 	}
 	
 	public static void modification()
