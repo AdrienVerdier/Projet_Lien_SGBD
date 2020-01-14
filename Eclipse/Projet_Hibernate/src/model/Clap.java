@@ -1,7 +1,5 @@
 package model;
 
-import java.time.Duration;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +7,7 @@ import javax.persistence.*;
 public class Clap {
 	@Id
 	private int codeClap;
-	private Duration duree;
+	private double duree;
 	private int codeBobine;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Setup codeSetup;
@@ -22,11 +20,11 @@ public class Clap {
 		this.codeClap = codeClap;
 	}
 
-	public Duration getDuree() {
+	public double getDuree() {
 		return duree;
 	}
 
-	public void setDuree(Duration duree) {
+	public void setDuree(double duree) {
 		this.duree = duree;
 	}
 
@@ -38,7 +36,7 @@ public class Clap {
 		this.codeBobine = codeBobine;
 	}
 
-	public Clap(int codeClap, Duration duree, int codeBobine) {
+	public Clap(int codeClap, double duree, int codeBobine) {
 		this.codeClap = codeClap;
 		this.duree = duree;
 		this.codeBobine = codeBobine;
@@ -52,7 +50,7 @@ public class Clap {
 		this.codeSetup = codeSetup;
 	}
 
-	public Clap(int codeClap, Duration duree, int codeBobine, Setup codeSetup) {
+	public Clap(int codeClap, double duree, int codeBobine, Setup codeSetup) {
 		this.codeClap = codeClap;
 		this.duree = duree;
 		this.codeBobine = codeBobine;
